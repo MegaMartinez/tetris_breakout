@@ -1,0 +1,6 @@
+import pygame
+
+class tile():
+    def __init__(self):
+        self.empty : bool = True
+        self.color : str = None
