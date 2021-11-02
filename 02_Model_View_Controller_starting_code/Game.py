@@ -1,4 +1,5 @@
 import pygame
+
 # Put each class in its own module, using the same name for both.
 # Then use statements like the following, but for YOUR classes in YOUR modules:
 #     from Fighter import Fighter
@@ -11,6 +12,7 @@ import pygame
 class Game:
     def __init__(self, screen: pygame.Surface):
         self.screen = screen
+        self.tetrisgrid = None
         # Store whatever YOUR game needs, perhaps something like this:
         #     self.missiles = Missiles(self.screen)
         #     self.fighter = Fighter(self.screen, self.missiles)

@@ -1,6 +1,7 @@
 import pygame
+from tile import tile
 
-class tetrisgrid():
+class tetrisgrid:
     def __init__(self):
         """
         FOR ANYONE WORKING WITH THIS GRID
@@ -17,17 +18,9 @@ class tetrisgrid():
         column = []
         for ky in range(20):
             for kx in range(10):
-                column += [kx]
+                column += [tile()]
             row += [column]
             column = []
         self.row = row
-        print("TESTING ROWS AND COLUMNS")
-        print("________________________")
-        print()
-        for k in range(len(row)):
-            print("_______________", k, "_______________")
-            print(row[k])
-        print("_______________", "TOTAL", "_______________")
-        print(row)
 
-testgrid = tetrisgrid()
+
