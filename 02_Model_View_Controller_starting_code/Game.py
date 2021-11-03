@@ -14,16 +14,19 @@ class Game:
     def __init__(self, screen: pygame.Surface):
         self.screen = screen
         self.tetrisgrid = tetrisgrid(screen)
+
         # Store whatever YOUR game needs, perhaps something like this:
         #     self.missiles = Missiles(self.screen)
         #     self.fighter = Fighter(self.screen, self.missiles)
         #     self.enemies = Enemies(self.screen)
 
-    def draw_game(self):
-        """ Ask all the objects in the game to draw themselves. """
+    def draw_once(self):
         for k in range(len(self.tetrisgrid.row)):
             for k2 in range(len(self.tetrisgrid.row[k])):
                 self.tetrisgrid.row[k][k2].draw(self.screen)
+
+    def draw_game(self):
+        """ Ask all the objects in the game to draw themselves. """
         # Use something like the following, but for the objects in YOUR game:
         #     self.fighter.draw()
         #     self.missiles.draw()
