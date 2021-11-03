@@ -12,5 +12,6 @@ class View:
 
     def draw_everything(self):
         self.screen.fill(self.background_color)
+        pygame.mouse.set_visible(False)
         self.game.draw_game()  # TODO: Implement draw_game in your Game
         pygame.display.update()
