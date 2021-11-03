@@ -34,5 +34,4 @@ class tile:
 
     def draw(self, screen):
         screen.blit(img, (self.posx, self.posy))
-        pygame.display.update()
 
