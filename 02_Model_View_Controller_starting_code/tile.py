@@ -1,6 +1,7 @@
 import pygame
 
-img = pygame.image.load("02_Model_View_Controller_starting_code/test_pixel_16x16.png")
+# img = pygame.image.load("02_Model_View_Controller_starting_code/test_pixel_16x16.png")
+# img = pygame.image.load("test_pixel_16x16.png")
 
 class tile:
     def __init__(self, posx, posy, screen):
@@ -34,3 +35,4 @@ class tile:
     def draw(self, screen):
         screen.blit(img, (self.posx, self.posy))
         pygame.display.update()
+
