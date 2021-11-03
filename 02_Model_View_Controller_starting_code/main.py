@@ -23,7 +23,7 @@ def main():
         clock.tick(frame_rate)
         controller.get_and_handle_events()
         game.run_one_cycle()
-       # viewer.draw_everything()
+        viewer.draw_everything()
         if i == 0:
             game.draw_once()
         i += 1

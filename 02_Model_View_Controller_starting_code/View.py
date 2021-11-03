@@ -11,7 +11,7 @@ class View:
         self.background_color = pygame.Color("black")  # TODO: Choose your own color
 
     def draw_everything(self):
-        self.screen.fill(self.background_color)
+        # self.screen.fill(self.background_color)
         pygame.mouse.set_visible(False)
         self.game.draw_game()  # TODO: Implement draw_game in your Game
         pygame.display.update()
