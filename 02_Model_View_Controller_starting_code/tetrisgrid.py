@@ -18,7 +18,7 @@ class tetrisgrid:
         column = []
         for ky in range(20):
             for kx in range(10):
-                column += [tile(kx, ky, screen)]
+                column += [tile(kx + 8, ky + 3, screen)]
             row += [column]
             column = []
         self.row = row

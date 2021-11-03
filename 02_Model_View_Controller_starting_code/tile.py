@@ -1,7 +1,7 @@
 import pygame
 
-img = pygame.image.load("02_Model_View_Controller_starting_code/test_pixel_16x16.png")
-# img = pygame.image.load("test_pixel_16x16.png")
+img = pygame.image.load("02_Model_View_Controller_starting_code/empty/empty_4.png")
+# img = pygame.image.load("empty/empty_4")
 
 class tile:
     def __init__(self, posx, posy, screen):
@@ -15,8 +15,8 @@ class tile:
         
         self.state : int = 0
         self.color : str = None
-        self.posx = ((16 * posx) + 144)
-        self.posy = ((16 * posy) + 64)
+        self.posx = ((8 * posx))
+        self.posy = ((8 * posy))
 
     def blank(self):
         self.state = 0

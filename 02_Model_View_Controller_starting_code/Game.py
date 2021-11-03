@@ -1,5 +1,6 @@
 import pygame
 from tetrisgrid import tetrisgrid
+from tile import tile
 
 # Put each class in its own module, using the same name for both.
 # Then use statements like the following, but for YOUR classes in YOUR modules:
@@ -25,6 +26,14 @@ class Game:
         for k in range(len(self.tetrisgrid.row)):
             for k2 in range(len(self.tetrisgrid.row[k])):
                 self.tetrisgrid.row[k][k2].draw(self.screen)
+        testulcorner = tile(0, 0, self.screen)
+        testurcorner = tile(29.5, 0, self.screen)
+        testblcorner = tile(0, 22, self.screen)
+        testbrcorner = tile(29.5, 22, self.screen)
+        testulcorner.draw(self.screen)
+        testurcorner.draw(self.screen)
+        testblcorner.draw(self.screen)
+        testbrcorner.draw(self.screen)
         # Use something like the following, but for the objects in YOUR game:
         #     self.fighter.draw()
         #     self.missiles.draw()

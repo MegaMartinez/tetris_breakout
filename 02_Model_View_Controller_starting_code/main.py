@@ -9,7 +9,7 @@ from View import View
 
 def main():
     pygame.init()
-    screen = pygame.display.set_mode((500, 375))  # TODO: Choose your own size
+    screen = pygame.display.set_mode((244, 184), SCALED)  # TODO: Choose your own size
     clock = pygame.time.Clock()
     game = Game(screen)  # the Model
     viewer = View(screen, game)  # the View
