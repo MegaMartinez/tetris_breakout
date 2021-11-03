@@ -1,6 +1,6 @@
 import pygame
 
-img = pygame.image.load("02_Model_View_Controller_starting_code/test_pixel.png")
+img = pygame.image.load("02_Model_View_Controller_starting_code/test_pixel_16x16.png")
 
 class tile:
     def __init__(self, posx, posy, screen):
