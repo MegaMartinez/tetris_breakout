@@ -3,7 +3,7 @@ import os
 path = os.getcwd()
 
 index = path.find("99z-Capstone_Team_Project-202210-05-martinms-fletchj1-aquaslc")
-for k in range(len(path) - index + 2):
+for k in range(len(path) - (len(path) - index)):
     path = path.removeprefix(path[0])
 
 if path == "99z-Capstone_Team_Project-202210-05-martinms-fletchj1-aquaslc":
