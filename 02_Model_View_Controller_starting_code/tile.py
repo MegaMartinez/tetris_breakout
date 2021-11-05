@@ -1,10 +1,18 @@
 import pygame
 
-blank = pygame.image.load("02_Model_View_Controller_starting_code/empty/blank.png")
-empty1 = pygame.image.load("02_Model_View_Controller_starting_code/empty/empty_1.png")
-empty2 = pygame.image.load("02_Model_View_Controller_starting_code/empty/empty_2.png")
-empty3 = pygame.image.load("02_Model_View_Controller_starting_code/empty/empty_3.png")
-empty4 = pygame.image.load("02_Model_View_Controller_starting_code/empty/empty_4.png")
+blank = pygame.image.load("empty/blank.png")
+empty1 = pygame.image.load("empty/empty_1.png")
+empty2 = pygame.image.load("empty/empty_2.png")
+empty3 = pygame.image.load("empty/empty_3.png")
+empty4 = pygame.image.load("empty/empty_4.png")
+
+
+#blank = pygame.image.load("02_Model_View_Controller_starting_code/empty/blank.png")
+#empty1 = pygame.image.load("02_Model_View_Controller_starting_code/empty/empty_1.png")
+#empty2 = pygame.image.load("02_Model_View_Controller_starting_code/empty/empty_2.png")
+#empty3 = pygame.image.load("02_Model_View_Controller_starting_code/empty/empty_3.png")
+#empty4 = pygame.image.load("02_Model_View_Controller_starting_code/empty/empty_4.png")
+
 # img = pygame.image.load("empty/empty_4")
 
 class tile:
