@@ -19,6 +19,10 @@ class Controller:
         pressed_keys = pygame.key.get_pressed()
         if pressed_keys[pygame.K_ESCAPE]:
             pygame.quit()
+        
+        # These keys are purely for debug. REMEMBER TO DELETE THEM LATER
+        if pressed_keys[pygame.K_u]:
+            self.game.tetrisgrid.begin()
 
         # Use code like the following, but for YOUR Game object.
         #     if pressed_keys[pygame.K_LEFT]:

@@ -2,7 +2,7 @@ import pygame
 from tile import tile
 
 class tetrisgrid:
-    def __init__(self, screen):
+    def __init__(self):
         """
         FOR ANYONE WORKING WITH THIS GRID
 
@@ -18,9 +18,12 @@ class tetrisgrid:
         column = []
         for ky in range(20):
             for kx in range(10):
-                column += [tile(kx + 8, ky + 3, screen)]
+                column += [tile(kx + 8, ky + 3)]
             row += [column]
             column = []
         self.row = row
-
-
+    
+    def begin(self):
+        for ky in range(20):
+            for kx in range(10):
+                self.row[ky][kx].empty_basic()
