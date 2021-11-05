@@ -11,9 +11,6 @@ if path == "99z-Capstone_Team_Project-202210-05-martinms-fletchj1-aquaslc":
 else:
     ide = "pycharm"
 
-def thing():
-    pass
-
 def file(file):
     file = str(file)
     if ide == "vscode":
