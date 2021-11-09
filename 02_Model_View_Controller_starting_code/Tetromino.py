@@ -99,6 +99,10 @@ class Tetromino:
             self.block2position[0] += dir
             self.block3position[0] += dir
             self.block4position[0] += dir
+    
+    def rotate(self):
+        # oh boy here we fuckin go
+        pass
 
     def movedown(self):
         self.startposition[1] += 8

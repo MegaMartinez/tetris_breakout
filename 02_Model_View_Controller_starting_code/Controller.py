@@ -40,10 +40,16 @@ class Controller:
                 self.game.tetrisgrid.checkrow()
             self.runonce = 1
 
-        if pressed_keys[pygame.K_s]:
-            if self.runonce == 0 and self.game.tetromino != None:
-                self.game.tetromino.movedown()
-            self.runonce = 1
+
+        # ACTUAL KEYS
+        
+        if self.key_was_pressed_on_this_cycle(pygame.K_s, events):
+            self.game.speedchange = True
+            self.game.newspeed = 1
+        
+        if self.key_was_released_on_this_cycle(pygame.K_s, events):
+            self.game.speedchange = True
+            self.game.newspeed = self.game.levelspeed
 
         if self.key_was_pressed_on_this_cycle(pygame.K_a, events):
             self.game.tetrominomovedir = -8
@@ -73,5 +79,12 @@ class Controller:
     def key_was_pressed_on_this_cycle(key, events):
         for event in events:
             if event.type == pygame.KEYDOWN and event.key == key:
+                return True
+        return False
+
+    @staticmethod
+    def key_was_released_on_this_cycle(key, events):
+        for event in events:
+            if event.type == pygame.KEYUP and event.key == key:
                 return True
         return False

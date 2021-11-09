@@ -24,9 +24,12 @@ class Game:
         self.stoptetromino = False
         self.clearanim = False
         self.tetrominomoving = False
+        self.speedchange = False
         self.tetrominomovedir = 0
         self.speed = 15
+        self.newspeed = 0
         self.tetrisstage = 0
+        self.levelspeed = 15
 
         # Store whatever YOUR game needs, perhaps something like this:
         #     self.missiles = Missiles(self.screen)
@@ -91,17 +94,25 @@ class Game:
                         self.tetrisinaction = True
                         self.framecount = 0
             self.framecount += 1
+        
+        if self.tetrisgrid.row[0][4].state == 2:
+            raise Exception("GAME OVER")
 
         if self.tetrominomoving:
             if self.tetromino != None:
                 self.tetromino.movehorizontal(self.tetrominomovedir, self.tetrisgrid.get_filled())
             self.tetrominomoving = False
 
+        if self.speedchange:
+            self.speed = self.newspeed
+            self.speedchange = False
+            self.framecount = 0
             
+
         #     self.enemies.move()
         #     self.missiles.handle_explosions(self.enemies)
 
     def spawntetromino(self):
-        i = random.randrange(0, 6, 1)
+        i = random.randrange(0, 7, 1)
         self.tetromino = Tetromino(["I", "J", "L", "O", "T", "S", "Z"][i])
         self.tetrisinaction = True
