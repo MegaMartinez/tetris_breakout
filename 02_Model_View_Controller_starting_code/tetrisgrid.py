@@ -41,6 +41,14 @@ class tetrisgrid:
                     final += [[self.row[ky][kx].posx, self.row[ky][kx].posy]]
         return final
 
+    def get_filled(self):
+        final = []
+        for ky in range(20):
+            for kx in range(10):
+                if self.row[ky][kx].state == 2:
+                    final += [[self.row[ky][kx].posx, self.row[ky][kx].posy]]
+        return final
+
     def debugfill(self, color):
         # will delete later
         # srsly please remind me to delete this it's completely useless

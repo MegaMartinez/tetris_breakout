@@ -85,11 +85,20 @@ class Tetromino:
         self.block4position = [((12 * 8) + block4offset[shapeindex][0]), ((3 * 8) + block4offset[shapeindex][1])]
         self.positions = [self.startposition, self.block2position, self.block3position, self.block4position]
 
-    def movehorizontal(self, dir):
-        self.startposition[0] += dir
-        self.block2position[0] += dir
-        self.block3position[0] += dir
-        self.block4position[0] += dir
+    def movehorizontal(self, dir, filled):
+        newpos = [self.startposition[0] + dir, self.block2position[0] + dir, self.block3position[0] + dir, self.block4position[0] + dir]
+        ypos = [self.startposition[1], self.block2position[1], self.block3position[1], self.block4position[1]]
+        check = 0
+        for k in range(len(newpos)):
+            if newpos[k] not in [56, 144]:
+                check += 1
+            if [newpos[k], ypos[k]] not in filled:
+                check += 1
+        if check == 8:
+            self.startposition[0] += dir
+            self.block2position[0] += dir
+            self.block3position[0] += dir
+            self.block4position[0] += dir
 
     def movedown(self):
         self.startposition[1] += 8

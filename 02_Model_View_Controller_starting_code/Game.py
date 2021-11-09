@@ -23,6 +23,8 @@ class Game:
         self.tetromino = None
         self.stoptetromino = False
         self.clearanim = False
+        self.tetrominomoving = False
+        self.tetrominomovedir = 0
         self.speed = 15
         self.tetrisstage = 0
 
@@ -73,16 +75,27 @@ class Game:
 
         if self.stoptetromino:
             if self.framecount == self.speed * 2:
-                if self.tetromino.positions[k] in self.tetrisgrid.get_stopspots():
-                    for k2 in range(len(self.tetromino.positions)):
-                        self.tetrisgrid.fill((self.tetromino.positions[k2][0] // 8) - 8, (self.tetromino.positions[k2][1] // 8) - 3, self.tetromino.color)
-                    self.tetromino = None
-                    self.framecount = -1
-                    self.stoptetromino = False
-                else:
-                    self.stoptetromino = False
-                    self.tetrisinaction = True
+                for k in range(len(self.tetromino.positions)):
+                    if self.tetromino.positions[k] in self.tetrisgrid.get_stopspots():
+                        for k2 in range(len(self.tetromino.positions)):
+                            self.tetrisgrid.fill((self.tetromino.positions[k2][0] // 8) - 8, (self.tetromino.positions[k2][1] // 8) - 3, self.tetromino.color)
+                        self.tetromino = None
+                        self.framecount = -1
+                        self.stoptetromino = False
+                        self.tetrisinaction = False
+                        self.tetrisgrid.checkrow()
+                        self.spawntetromino()
+                        break
+                    else:
+                        self.stoptetromino = False
+                        self.tetrisinaction = True
+                        self.framecount = 0
             self.framecount += 1
+
+        if self.tetrominomoving:
+            if self.tetromino != None:
+                self.tetromino.movehorizontal(self.tetrominomovedir, self.tetrisgrid.get_filled())
+            self.tetrominomoving = False
 
             
         #     self.enemies.move()

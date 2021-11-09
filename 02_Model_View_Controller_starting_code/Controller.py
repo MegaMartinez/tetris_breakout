@@ -46,12 +46,13 @@ class Controller:
             self.runonce = 1
 
         if self.key_was_pressed_on_this_cycle(pygame.K_a, events):
-            if self.game.tetromino != None:
-                self.game.tetromino.movehorizontal(-8)
+            self.game.tetrominomovedir = -8
+            self.game.tetrominomoving = True
+            
         
         if self.key_was_pressed_on_this_cycle(pygame.K_d, events):
-            if self.game.tetromino != None:
-                self.game.tetromino.movehorizontal(8)
+            self.game.tetrominomovedir = 8
+            self.game.tetrominomoving = True
 
         # Use code like the following, but for YOUR Game object.
         #     if pressed_keys[pygame.K_LEFT]:
