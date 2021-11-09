@@ -118,5 +118,5 @@ class Game:
 
     def spawntetromino(self):
         i = random.randrange(0, 7, 1)
-        self.tetromino = Tetromino(["I", "J", "L", "O", "T", "S", "Z"][2])
+        self.tetromino = Tetromino(["I", "J", "L", "O", "T", "S", "Z"][i])
         self.tetrisinaction = True
