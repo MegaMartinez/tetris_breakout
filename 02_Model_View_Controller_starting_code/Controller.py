@@ -43,23 +43,23 @@ class Controller:
 
         # ACTUAL KEYS
 
-        if self.key_was_pressed_on_this_cycle(pygame.K_s, events):
+        if self.key_was_pressed_on_this_cycle(pygame.K_s, events) or self.key_was_pressed_on_this_cycle(pygame.K_DOWN, events):
             self.game.speedchange = True
             self.game.newspeed = 1
         
-        if self.key_was_released_on_this_cycle(pygame.K_s, events):
+        if self.key_was_released_on_this_cycle(pygame.K_s, events) or self.key_was_released_on_this_cycle(pygame.K_DOWN, events):
             self.game.speedchange = True
             self.game.newspeed = self.game.levelspeed
 
-        if self.key_was_pressed_on_this_cycle(pygame.K_a, events):
+        if self.key_was_pressed_on_this_cycle(pygame.K_a, events) or self.key_was_pressed_on_this_cycle(pygame.K_LEFT, events):
             self.game.tetrominomovedir = -8
             self.game.tetrominomoving = True    
         
-        if self.key_was_pressed_on_this_cycle(pygame.K_d, events):
+        if self.key_was_pressed_on_this_cycle(pygame.K_d, events) or self.key_was_pressed_on_this_cycle(pygame.K_RIGHT, events):
             self.game.tetrominomovedir = 8
             self.game.tetrominomoving = True
 
-        if self.key_was_pressed_on_this_cycle(pygame.K_w, events):
+        if self.key_was_pressed_on_this_cycle(pygame.K_w, events) or self.key_was_pressed_on_this_cycle(pygame.K_UP, events):
             self.game.tetrominorotating = True
 
         # Use code like the following, but for YOUR Game object.
