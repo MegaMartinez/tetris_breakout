@@ -25,6 +25,7 @@ class Game:
         self.clearanim = False
         self.tetrominomoving = False
         self.speedchange = False
+        self.tetrominorotating = False
         self.tetrominomovedir = 0
         self.speed = 15
         self.newspeed = 0
@@ -62,6 +63,9 @@ class Game:
                 self.tetrisstage = 1
             self.framecount += 1
         
+        if self.tetrominorotating:
+            self.tetromino.rotate(self.tetrisgrid.get_filled())
+            self.tetrominorotating = False
 
         if self.tetrisinaction:
             self.tetrisgrid.updatestops()
@@ -114,5 +118,5 @@ class Game:
 
     def spawntetromino(self):
         i = random.randrange(0, 7, 1)
-        self.tetromino = Tetromino(["I", "J", "L", "O", "T", "S", "Z"][i])
+        self.tetromino = Tetromino(["I", "J", "L", "O", "T", "S", "Z"][2])
         self.tetrisinaction = True

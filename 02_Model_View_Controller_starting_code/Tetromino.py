@@ -84,6 +84,7 @@ class Tetromino:
         self.block3position = [((12 * 8) + block3offset[shapeindex][0]), ((3 * 8) + block3offset[shapeindex][1])]
         self.block4position = [((12 * 8) + block4offset[shapeindex][0]), ((3 * 8) + block4offset[shapeindex][1])]
         self.positions = [self.startposition, self.block2position, self.block3position, self.block4position]
+        self.rotation = 0
 
     def movehorizontal(self, dir, filled):
         newpos = [self.startposition[0] + dir, self.block2position[0] + dir, self.block3position[0] + dir, self.block4position[0] + dir]
@@ -100,9 +101,171 @@ class Tetromino:
             self.block3position[0] += dir
             self.block4position[0] += dir
     
-    def rotate(self):
+    def rotate(self, filled):
         # oh boy here we fuckin go
-        pass
+        
+        if self.shape in ["S", "Z"]:
+            if self.shape == "S":
+                if self.rotation == 0:
+                    newpos = [[self.block2position[0] + 8,
+                    self.block2position[1] - 8],
+                    [self.block3position[0] + 8,
+                    self.block3position[1] - 16],[self.block4position[0],
+                    self.block4position[1] + 8]]
+                    check = 0
+                    for k in range(3):
+                        if newpos[k][0] not in [56, 144]:
+                            check += 1
+                        if [newpos[k][0], newpos[k][1]] not in filled:
+                            check += 1
+                    if check == 6:
+                        self.block2position[0] += 8
+                        self.block2position[1] -= 8
+                        self.block3position[0] += 8
+                        self.block3position[1] -= 16
+                        self.block4position[1] += 8
+                        self.rotation = 1
+                elif self.rotation == 1:
+                    newpos = [[self.block2position[0] - 8,
+                    self.block2position[1] + 8],
+                    [self.block3position[0] - 8,
+                    self.block3position[1] + 16],[self.block4position[0],
+                    self.block4position[1] - 8]]
+                    check = 0
+                    for k in range(3):
+                        if newpos[k][0] not in [56, 144]:
+                            check += 1
+                        if [newpos[k][0], newpos[k][1]] not in filled:
+                            check += 1
+                    if check == 6:
+                        self.block2position[0] -= 8
+                        self.block2position[1] += 8
+                        self.block3position[0] -= 8
+                        self.block3position[1] += 16
+                        self.block4position[1] -= 8
+                        self.rotation = 0
+        if self.shape == "Z":
+            if self.rotation == 0:
+                newpos = [[self.block2position[0] + 8,
+                self.block2position[1] - 8],
+                [self.block3position[0] - 16,
+                self.block3position[1]],[self.block4position[0] - 8,
+                self.block4position[1] - 8]]
+                check = 0
+                for k in range(3):
+                    if newpos[k][0] not in [56, 144]:
+                        check += 1
+                    if [newpos[k][0], newpos[k][1]] not in filled:
+                        check += 1
+                if check == 6:
+                    self.block2position[0] += 8
+                    self.block2position[1] -= 8
+                    self.block3position[0] -= 16
+                    self.block4position[0] -= 8
+                    self.block4position[1] -= 8
+                    self.rotation = 1
+            elif self.rotation == 1:
+                newpos = [[self.block2position[0] - 8,
+                self.block2position[1] + 8],
+                [self.block3position[0] + 16,
+                self.block3position[1]],[self.block4position[0] + 8,
+                self.block4position[1] + 8]]
+                check = 0
+                for k in range(3):
+                    if newpos[k][0] not in [56, 144]:
+                        check += 1
+                    if [newpos[k][0], newpos[k][1]] not in filled:
+                        check += 1
+                if check == 6:
+                    self.block2position[0] -= 8
+                    self.block2position[1] += 8
+                    self.block3position[0] += 16
+                    self.block4position[0] += 8
+                    self.block4position[1] += 8
+                    self.rotation = 0
+        if self.shape == "T":
+            if self.rotation == 0:
+                newpos = [[self.block2position[0] + 8,
+                self.block2position[1] - 8],
+                [self.block3position[0] - 8,
+                self.block3position[1] + 8],[self.block4position[0] - 8,
+                self.block4position[1] - 8]]
+                check = 0
+                for k in range(3):
+                    if newpos[k][0] not in [56, 144]:
+                        check += 1
+                    if [newpos[k][0], newpos[k][1]] not in filled:
+                        check += 1
+                if check == 6:
+                    self.block2position[0] += 8
+                    self.block2position[1] -= 8
+                    self.block3position[0] -= 8
+                    self.block3position[1] += 8
+                    self.block4position[0] -= 8
+                    self.block4position[1] -= 8
+                    self.rotation = 1
+            elif self.rotation == 1:
+                newpos = [[self.block2position[0] + 8,
+                self.block2position[1] + 8],
+                [self.block3position[0] - 8,
+                self.block3position[1] - 8],[self.block4position[0] + 8,
+                self.block4position[1] - 8]]
+                check = 0
+                for k in range(3):
+                    if newpos[k][0] not in [56, 144]:
+                        check += 1
+                    if [newpos[k][0], newpos[k][1]] not in filled:
+                        check += 1
+                if check == 6:
+                    self.block2position[0] += 8
+                    self.block2position[1] += 8
+                    self.block3position[0] -= 8
+                    self.block3position[1] -= 8
+                    self.block4position[0] += 8
+                    self.block4position[1] -= 8
+                    self.rotation = 2
+            elif self.rotation == 2:
+                newpos = [[self.block2position[0] - 8,
+                self.block2position[1] + 8],
+                [self.block3position[0] + 8,
+                self.block3position[1] - 8],[self.block4position[0] + 8,
+                self.block4position[1] + 8]]
+                check = 0
+                for k in range(3):
+                    if newpos[k][0] not in [56, 144]:
+                        check += 1
+                    if [newpos[k][0], newpos[k][1]] not in filled:
+                        check += 1
+                if check == 6:
+                    self.block2position[0] -= 8
+                    self.block2position[1] += 8
+                    self.block3position[0] += 8
+                    self.block3position[1] -= 8
+                    self.block4position[0] += 8
+                    self.block4position[1] += 8
+                    self.rotation = 3
+            elif self.rotation == 3:
+                newpos = [[self.block2position[0] - 8,
+                self.block2position[1] - 8],
+                [self.block3position[0] + 8,
+                self.block3position[1] + 8],[self.block4position[0] - 8,
+                self.block4position[1] + 8]]
+                check = 0
+                for k in range(3):
+                    if newpos[k][0] not in [56, 144]:
+                        check += 1
+                    if [newpos[k][0], newpos[k][1]] not in filled:
+                        check += 1
+                if check == 6:
+                    self.block2position[0] -= 8
+                    self.block2position[1] -= 8
+                    self.block3position[0] += 8
+                    self.block3position[1] += 8
+                    self.block4position[0] -= 8
+                    self.block4position[1] += 8
+                    self.rotation = 0
+            
+
 
     def movedown(self):
         self.startposition[1] += 8
