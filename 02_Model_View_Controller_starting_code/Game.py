@@ -21,6 +21,8 @@ class Game:
         self.emptyanimation = False
         self.tetrisinaction = False
         self.tetromino = None
+        self.stoptetromino = False
+        self.clearanim = False
         self.speed = 15
         self.tetrisstage = 0
 
@@ -63,16 +65,24 @@ class Game:
                 self.framecount = 0
             for k in range(len(self.tetromino.positions)):
                 if self.tetromino.positions[k] in self.tetrisgrid.get_stopspots():
-                    for k2 in range(len(self.tetromino.positions)):
-                        self.tetrisgrid.fill((self.tetromino.positions[k2][0] // 8) - 8, (self.tetromino.positions[k2][1] // 8) - 3, self.tetromino.color)
+                    self.stoptetromino = True
                     self.tetrisinaction = False
-                    self.tetromino = None
                     self.framecount = -1
-                    self.tetrisgrid.checkrow()
                     break
             self.framecount += 1
 
-        
+        if self.stoptetromino:
+            if self.framecount == self.speed * 2:
+                if self.tetromino.positions[k] in self.tetrisgrid.get_stopspots():
+                    for k2 in range(len(self.tetromino.positions)):
+                        self.tetrisgrid.fill((self.tetromino.positions[k2][0] // 8) - 8, (self.tetromino.positions[k2][1] // 8) - 3, self.tetromino.color)
+                    self.tetromino = None
+                    self.framecount = -1
+                    self.stoptetromino = False
+                else:
+                    self.stoptetromino = False
+                    self.tetrisinaction = True
+            self.framecount += 1
 
             
         #     self.enemies.move()
