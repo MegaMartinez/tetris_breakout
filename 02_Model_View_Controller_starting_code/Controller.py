@@ -8,6 +8,7 @@ from Game import Game
 class Controller:
     def __init__(self, game: Game):
         self.game = game
+        self.runonce = 0
 
     def get_and_handle_events(self):
         """
@@ -22,7 +23,17 @@ class Controller:
         
         # These keys are purely for debug. REMEMBER TO DELETE THEM LATER
         if pressed_keys[pygame.K_u]:
-            self.game.tetrisgrid.begin()
+            if self.runonce == 0:
+                self.game.emptyanimation = True
+            self.runonce = 1
+        
+        if pressed_keys[pygame.K_f]:
+            if self.runonce == 0:
+                self.game.tetrisgrid.debugfill("purple")
+            self.runonce = 1
+
+        if pressed_keys[pygame.K_RSHIFT]:
+            self.runonce = 0
 
         # Use code like the following, but for YOUR Game object.
         #     if pressed_keys[pygame.K_LEFT]:

@@ -26,4 +26,9 @@ class tetrisgrid:
     def begin(self):
         for ky in range(20):
             for kx in range(10):
-                self.row[ky][kx].empty_basic()
+                self.row[ky][kx].empty_anim()
+
+    def debugfill(self, color):
+        for ky in range(20):
+            for kx in range(10):
+                self.row[ky][kx].fill(color)

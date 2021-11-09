@@ -15,6 +15,8 @@ class Game:
     def __init__(self, screen: pygame.Surface):
         self.screen = screen
         self.tetrisgrid = tetrisgrid()
+        self.framecount = 0
+        self.emptyanimation = False
 
         # Store whatever YOUR game needs, perhaps something like this:
         #     self.missiles = Missiles(self.screen)
@@ -35,6 +37,15 @@ class Game:
     def run_one_cycle(self):
         """ All objects that do something at each cycle: ask them to do it. """
         # Use something like the following, but for the objects in YOUR game:
-        #     self.missiles.move()
+        if self.emptyanimation:
+            if self.framecount in [8, 16, 24, 32]:
+                self.tetrisgrid.begin()
+            if self.framecount == 32:
+                self.emptyanimation = False
+                self.framecount = 0
+            self.framecount += 1
+
+
+            
         #     self.enemies.move()
         #     self.missiles.handle_explosions(self.enemies)
