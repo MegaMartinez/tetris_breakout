@@ -60,7 +60,7 @@ class tile:
         else:
             errormessage = ('"' + str(color) + '"' + " ISN'T A VALID COLOR YOU DUMBASS")
             raise Exception(errormessage)
-            
+
 
 
     def draw(self, screen):

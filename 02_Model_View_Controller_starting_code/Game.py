@@ -39,11 +39,12 @@ class Game:
         # Use something like the following, but for the objects in YOUR game:
         if self.emptyanimation:
             if self.framecount in [8, 16, 24, 32]:
-                self.tetrisgrid.begin()
+                self.tetrisgrid.clear_next_frame()
             if self.framecount == 32:
                 self.emptyanimation = False
                 self.framecount = 0
             self.framecount += 1
+        
 
 
             

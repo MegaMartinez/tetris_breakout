@@ -29,11 +29,16 @@ class Controller:
         
         if pressed_keys[pygame.K_f]:
             if self.runonce == 0:
-                self.game.tetrisgrid.debugfill("purple")
+                self.game.tetrisgrid.debugfill("blue")
             self.runonce = 1
 
         if pressed_keys[pygame.K_RSHIFT]:
             self.runonce = 0
+
+        if pressed_keys[pygame.K_LSHIFT]:
+            if self.runonce == 0:
+                self.game.tetrisgrid.checkrow()
+            self.runonce = 1
 
         # Use code like the following, but for YOUR Game object.
         #     if pressed_keys[pygame.K_LEFT]:

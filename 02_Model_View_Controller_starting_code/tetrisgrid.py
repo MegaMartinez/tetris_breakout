@@ -23,12 +23,43 @@ class tetrisgrid:
             column = []
         self.row = row
     
-    def begin(self):
+    def clear_next_frame(self):
         for ky in range(20):
             for kx in range(10):
                 self.row[ky][kx].empty_anim()
 
     def debugfill(self, color):
+        pass
+    
+    def checkrow(self):
         for ky in range(20):
+            countfilled = 0
             for kx in range(10):
-                self.row[ky][kx].fill(color)
+                if self.row[ky][kx].state == 2:
+                    countfilled += 1
+            if countfilled == 10:
+                for kx in range(10):
+                        self.row[ky][kx].empty_basic()
+        for ky in range(19, -1, -1):
+            # this will check if it's empty
+            countempty = 0
+            for kx in range(10):
+                if self.row[ky][kx].state == 1:
+                    countempty += 1
+            if countempty == 10:
+                # this will find nearest row with a filled block
+                nearest = 0
+                for ky2 in range(ky, -1, -1):
+                    for kx2 in range(10):
+                        if self.row[ky2][kx2].state == 2:
+                            nearest = ky2
+                    if nearest == ky2:
+                        break
+                for kx in range(10):
+                    if self.row[ky2][kx].state == 2:
+                        self.row[ky][kx].fill(self.row[ky2][kx].color)
+                    self.row[ky2][kx].empty_basic()
+                        
+        
+                    
+
