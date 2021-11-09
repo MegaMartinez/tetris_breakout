@@ -1,3 +1,5 @@
+# This code written by Matthew Martinez
+
 import pygame
 from tile import tile
 
@@ -29,6 +31,8 @@ class tetrisgrid:
                 self.row[ky][kx].empty_anim()
 
     def debugfill(self, color):
+        # will delete later
+        # srsly please remind me to delete this it's completely useless
         pass
     
     def checkrow(self):

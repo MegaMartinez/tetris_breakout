@@ -1,3 +1,9 @@
+# This code written by Matthew Martinez
+
+# Since some of us are working of different IDEs which seem to use different file systems,
+# this function exists to reconcile the difference. Any file directory called by file()
+# will work on both pycharm or vscode, solving some issues we were having in development.
+
 import os
 
 path = os.getcwd()
