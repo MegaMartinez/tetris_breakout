@@ -14,10 +14,10 @@ frame = 0
 blue = pygame.image.load(file("block/blue.png"))
 green = pygame.image.load(file("block/green.png"))
 purple = pygame.image.load(file("block/purple.png"))
-red = pygame.image.load(file("block/red.png"))
+orange = pygame.image.load(file("block/orange.png"))
 yellow = pygame.image.load(file("block/yellow.png"))
-colored = [blue, green, purple, red, yellow]
-colorstr = ["blue", "green", "purple", "red", "yellow"]
+colored = [blue, green, purple, orange, yellow]
+colorstr = ["blue", "green", "purple", "orange", "yellow"]
 
 
 class tile:
@@ -35,7 +35,7 @@ class tile:
         self.color : str = None
         self.posx = (8 * posx)
         self.posy = (8 * posy)
-        self.timer = 0
+        self.stophere = False
 
     def blank(self):
         self.state = 0

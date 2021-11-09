@@ -30,6 +30,17 @@ class tetrisgrid:
             for kx in range(10):
                 self.row[ky][kx].empty_anim()
 
+    def fill(self, cellx, celly, color):
+        self.row[celly][cellx].fill(color)
+
+    def get_stopspots(self):
+        final = []
+        for ky in range(20):
+            for kx in range(10):
+                if self.row[ky][kx].stophere == True:
+                    final += [[self.row[ky][kx].posx, self.row[ky][kx].posy]]
+        return final
+
     def debugfill(self, color):
         # will delete later
         # srsly please remind me to delete this it's completely useless
@@ -63,6 +74,14 @@ class tetrisgrid:
                     if self.row[ky2][kx].state == 2:
                         self.row[ky][kx].fill(self.row[ky2][kx].color)
                     self.row[ky2][kx].empty_basic()
+    
+    def updatestops(self):
+        for ky in range(20):
+            for kx in range(10):
+                if self.row[ky][kx].state == 2:
+                    self.row[ky - 1][kx].stophere = True
+        for kx in range(10):
+            self.row[19][kx].stophere = True
                         
         
                     
