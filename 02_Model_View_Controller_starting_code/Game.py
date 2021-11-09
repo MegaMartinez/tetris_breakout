@@ -68,6 +68,7 @@ class Game:
                     self.tetrisinaction = False
                     self.tetromino = None
                     self.framecount = -1
+                    self.tetrisgrid.checkrow()
                     break
             self.framecount += 1
 

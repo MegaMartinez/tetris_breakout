@@ -78,6 +78,9 @@ class tetrisgrid:
     def updatestops(self):
         for ky in range(20):
             for kx in range(10):
+                self.row[ky][kx].stophere = False
+        for ky in range(20):
+            for kx in range(10):
                 if self.row[ky][kx].state == 2:
                     self.row[ky - 1][kx].stophere = True
         for kx in range(10):
