@@ -29,7 +29,7 @@ class Controller:
         
         if pressed_keys[pygame.K_f]:
             if self.runonce == 0:
-                self.game.tetrisinaction = True
+                self.game.spawntetromino()
             self.runonce = 1
 
         if pressed_keys[pygame.K_RSHIFT]:
@@ -41,18 +41,18 @@ class Controller:
             self.runonce = 1
 
         if pressed_keys[pygame.K_s]:
-            if self.runonce == 0:
-                self.game.tetronimo.movedown()
+            if self.runonce == 0 and self.game.tetromino != None:
+                self.game.tetromino.movedown()
             self.runonce = 1
 
         if pressed_keys[pygame.K_a]:
-            if self.runonce == 0:
-                self.game.tetronimo.movehorizontal(-8)
+            if self.runonce == 0 and self.game.tetromino != None:
+                self.game.tetromino.movehorizontal(-8)
             self.runonce = 1
         
         if pressed_keys[pygame.K_d]:
-            if self.runonce == 0:
-                self.game.tetronimo.movehorizontal(8)
+            if self.runonce == 0 and self.game.tetromino != None:
+                self.game.tetromino.movehorizontal(8)
             self.runonce = 1
 
         # Use code like the following, but for YOUR Game object.

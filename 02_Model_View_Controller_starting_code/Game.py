@@ -2,6 +2,7 @@ import pygame
 from tetrisgrid import tetrisgrid
 from tile import tile
 from Tetromino import Tetromino
+import random
 
 # Put each class in its own module, using the same name for both.
 # Then use statements like the following, but for YOUR classes in YOUR modules:
@@ -19,8 +20,9 @@ class Game:
         self.framecount = 0
         self.emptyanimation = False
         self.tetrisinaction = False
-        self.tetronimo = Tetromino("I")
+        self.tetromino = None
         self.speed = 15
+        self.tetrisstage = 0
 
         # Store whatever YOUR game needs, perhaps something like this:
         #     self.missiles = Missiles(self.screen)
@@ -32,8 +34,8 @@ class Game:
         for k in range(len(self.tetrisgrid.row)):
             for k2 in range(len(self.tetrisgrid.row[k])):
                 self.tetrisgrid.row[k][k2].draw(self.screen)
-        if self.tetronimo != None:
-            self.tetronimo.draw(self.screen)
+        if self.tetromino != None:
+            self.tetromino.draw(self.screen)
 
 
         # Use something like the following, but for the objects in YOUR game:
@@ -50,20 +52,22 @@ class Game:
             if self.framecount == 32:
                 self.emptyanimation = False
                 self.framecount = -1
+                self.tetrisstage = 1
             self.framecount += 1
         
 
         if self.tetrisinaction:
             self.tetrisgrid.updatestops()
             if self.framecount == self.speed:
-                self.tetronimo.movedown()
+                self.tetromino.movedown()
                 self.framecount = 0
-            for k in range(len(self.tetronimo.positions)):
-                if self.tetronimo.positions[k] in self.tetrisgrid.get_stopspots():
-                    for k2 in range(len(self.tetronimo.positions)):
-                        self.tetrisgrid.fill((self.tetronimo.positions[k2][0] // 8) - 8, (self.tetronimo.positions[k2][1] // 8) - 3, self.tetronimo.color)
+            for k in range(len(self.tetromino.positions)):
+                if self.tetromino.positions[k] in self.tetrisgrid.get_stopspots():
+                    for k2 in range(len(self.tetromino.positions)):
+                        self.tetrisgrid.fill((self.tetromino.positions[k2][0] // 8) - 8, (self.tetromino.positions[k2][1] // 8) - 3, self.tetromino.color)
                     self.tetrisinaction = False
-                    self.tetronimo = None
+                    self.tetromino = None
+                    self.framecount = -1
                     break
             self.framecount += 1
 
@@ -72,3 +76,8 @@ class Game:
             
         #     self.enemies.move()
         #     self.missiles.handle_explosions(self.enemies)
+
+    def spawntetromino(self):
+        i = random.randrange(0, 6, 1)
+        self.tetromino = Tetromino(["I", "J", "L", "O", "T", "S", "Z"][i])
+        self.tetrisinaction = True
