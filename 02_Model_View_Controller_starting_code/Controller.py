@@ -25,11 +25,7 @@ class Controller:
         if pressed_keys[pygame.K_u]:
             if self.runonce == 0:
                 self.game.emptyanimation = True
-            self.runonce = 1
-        
-        if pressed_keys[pygame.K_f]:
-            if self.runonce == 0:
-                self.game.spawntetromino()
+                self.game.gamestate = 1
             self.runonce = 1
 
         if pressed_keys[pygame.K_RSHIFT]:

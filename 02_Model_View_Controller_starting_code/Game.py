@@ -19,6 +19,19 @@ class Game:
         self.screen = screen
         self.tetrisgrid = tetrisgrid()
         self.framecount = 0
+
+        """
+        game states
+        0 = menu
+        1 = tetris
+        2 = breakout
+        """
+
+        self.gamestate = 0
+
+        #------------------#
+        # TETRIS VARIABLES #
+        #------------------#
         self.emptyanimation = False
         self.tetrisinaction = False
         self.tetromino = None
@@ -30,8 +43,11 @@ class Game:
         self.tetrominomovedir = 0
         self.speed = 15
         self.newspeed = 0
-        self.tetrisstage = 0
         self.levelspeed = 15
+        self.tetrisstage = 0
+
+
+
         self.scoreboard = Scoreboard(self.screen)
         self.score = 0
 
@@ -58,65 +74,71 @@ class Game:
     def run_one_cycle(self):
         """ All objects that do something at each cycle: ask them to do it. """
         # Use something like the following, but for the objects in YOUR game:
-        if self.emptyanimation:
-            if self.framecount in [8, 16, 24, 32]:
-                self.tetrisgrid.clear_next_frame()
-            if self.framecount == 32:
-                self.emptyanimation = False
-                self.framecount = -1
-                self.tetrisstage = 1
-            self.framecount += 1
-        
-        if self.tetrominorotating:
-            self.tetromino.rotate(self.tetrisgrid.get_filled())
-            self.tetrominorotating = False
 
-        if self.tetrisinaction:
-            self.tetrisgrid.updatestops()
-            if self.framecount == self.speed:
-                self.tetromino.movedown()
-                self.framecount = 0
-            for k in range(len(self.tetromino.positions)):
-                if self.tetromino.positions[k] in self.tetrisgrid.get_stopspots():
-                    self.stoptetromino = True
-                    self.tetrisinaction = False
+        if self.gamestate == 1:
+            
+            if True not in [self.emptyanimation, self.tetrisinaction, self.stoptetromino]:
+                pygame.time.wait(1000)
+                self.spawntetromino()
+
+            if self.emptyanimation:
+                if self.framecount in [8, 16, 24, 32]:
+                    self.tetrisgrid.clear_next_frame()
+                if self.framecount == 32:
+                    self.emptyanimation = False
                     self.framecount = -1
-                    break
-            self.framecount += 1
+                self.framecount += 1
+            
+            if self.tetrominorotating:
+                self.tetromino.rotate(self.tetrisgrid.get_filled())
+                self.tetrominorotating = False
 
-        if self.stoptetromino:
-            if self.framecount == self.speed * 2:
+            if self.tetrisinaction:
+                self.tetrisgrid.updatestops()
+                if self.framecount == self.speed:
+                    self.tetromino.movedown()
+                    self.framecount = 0
                 for k in range(len(self.tetromino.positions)):
                     if self.tetromino.positions[k] in self.tetrisgrid.get_stopspots():
-                        for k2 in range(len(self.tetromino.positions)):
-                            self.tetrisgrid.fill((self.tetromino.positions[k2][0] // 8) - 8, (self.tetromino.positions[k2][1] // 8) - 3, self.tetromino.color)
-                        self.tetromino = None
-                        self.framecount = -1
-                        self.stoptetromino = False
+                        self.stoptetromino = True
                         self.tetrisinaction = False
-                        self.tetrisgrid.checkrow()
-                        self.score += 100
-                        self.spawntetromino()
+                        self.framecount = -1
                         break
-                    else:
-                        self.stoptetromino = False
-                        self.tetrisinaction = True
-                        self.framecount = 0
-            self.framecount += 1
-        
-        if self.tetrisgrid.row[0][4].state == 2:
-            raise Exception("GAME OVER")
+                self.framecount += 1
 
-        if self.tetrominomoving:
-            if self.tetromino != None:
-                self.tetromino.movehorizontal(self.tetrominomovedir, self.tetrisgrid.get_filled())
-            self.tetrominomoving = False
-
-        if self.speedchange:
-            self.speed = self.newspeed
-            self.speedchange = False
-            self.framecount = 0
+            if self.stoptetromino:
+                if self.framecount == self.speed * 2:
+                    for k in range(len(self.tetromino.positions)):
+                        if self.tetromino.positions[k] in self.tetrisgrid.get_stopspots():
+                            for k2 in range(len(self.tetromino.positions)):
+                                self.tetrisgrid.fill((self.tetromino.positions[k2][0] // 8) - 8, (self.tetromino.positions[k2][1] // 8) - 3, self.tetromino.color)
+                            self.tetromino = None
+                            self.framecount = -1
+                            self.stoptetromino = False
+                            self.tetrisinaction = False
+                            self.tetrisgrid.checkrow()
+                            self.spawntetromino()
+                            break
+                        else:
+                            self.stoptetromino = False
+                            self.tetrisinaction = True
+                            self.framecount = 0
+                self.framecount += 1
             
+            if self.tetrisgrid.row[0][4].state == 2:
+                raise Exception("GAME OVER")
+
+            if self.tetrominomoving:
+                if self.tetromino != None:
+                    self.tetromino.movehorizontal(self.tetrominomovedir, self.tetrisgrid.get_filled())
+                self.tetrominomoving = False
+
+            if self.speedchange:
+                self.speed = self.newspeed
+                self.speedchange = False
+                self.framecount = 0
+            
+            self.score = self.tetrisgrid.updatescore()
 
         #     self.enemies.move()
         #     self.missiles.handle_explosions(self.enemies)
