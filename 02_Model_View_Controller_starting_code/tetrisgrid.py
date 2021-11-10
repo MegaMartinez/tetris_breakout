@@ -2,6 +2,7 @@
 
 import pygame
 from tile import tile
+from Scoreboard import Scoreboard
 
 class tetrisgrid:
     def __init__(self):
@@ -24,6 +25,7 @@ class tetrisgrid:
             row += [column]
             column = []
         self.row = row
+        self.score = 0
     
     def clear_next_frame(self):
         for ky in range(20):
@@ -39,6 +41,7 @@ class tetrisgrid:
             for kx in range(10):
                 if self.row[ky][kx].stophere == True:
                     final += [[self.row[ky][kx].posx, self.row[ky][kx].posy]]
+                    print()
         return final
 
     def get_filled(self):
@@ -60,9 +63,10 @@ class tetrisgrid:
             for kx in range(10):
                 if self.row[ky][kx].state == 2:
                     countfilled += 1
-            if countfilled == 10:
+            if countfilled == 10: #Add score here
+                self.score += 100
                 for kx in range(10):
-                        self.row[ky][kx].empty_basic()
+                    self.row[ky][kx].empty_basic()
         for ky in range(19, -1, -1):
             # this will check if it's empty
             countempty = 0

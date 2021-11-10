@@ -3,7 +3,6 @@ from pygame.constants import FULLSCREEN, SCALED
 from Game import Game
 from Controller import Controller
 from View import View
-
 # TODO: Put your names here (entire team)
 
 
@@ -23,7 +22,6 @@ def main():
         controller.get_and_handle_events()
         game.run_one_cycle()
         viewer.draw_everything()
-
 
 
 main()

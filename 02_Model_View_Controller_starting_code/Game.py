@@ -2,6 +2,7 @@ import pygame
 from tetrisgrid import tetrisgrid
 from tile import tile
 from Tetromino import Tetromino
+from Scoreboard import Scoreboard
 import random
 
 # Put each class in its own module, using the same name for both.
@@ -31,6 +32,7 @@ class Game:
         self.newspeed = 0
         self.tetrisstage = 0
         self.levelspeed = 15
+        self.scoreboard = Scoreboard(self.screen)
 
         # Store whatever YOUR game needs, perhaps something like this:
         #     self.missiles = Missiles(self.screen)
@@ -39,6 +41,7 @@ class Game:
 
     def draw_game(self):
         """ Ask all the objects in the game to draw themselves. """
+        self.scoreboard.draw()
         for k in range(len(self.tetrisgrid.row)):
             for k2 in range(len(self.tetrisgrid.row[k])):
                 self.tetrisgrid.row[k][k2].draw(self.screen)
