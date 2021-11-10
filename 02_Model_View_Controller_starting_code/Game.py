@@ -33,6 +33,7 @@ class Game:
         self.tetrisstage = 0
         self.levelspeed = 15
         self.scoreboard = Scoreboard(self.screen)
+        self.score = 0
 
         # Store whatever YOUR game needs, perhaps something like this:
         #     self.missiles = Missiles(self.screen)
@@ -94,6 +95,7 @@ class Game:
                         self.stoptetromino = False
                         self.tetrisinaction = False
                         self.tetrisgrid.checkrow()
+                        self.score += 100
                         self.spawntetromino()
                         break
                     else:
