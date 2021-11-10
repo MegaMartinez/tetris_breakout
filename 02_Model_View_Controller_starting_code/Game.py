@@ -4,6 +4,7 @@ from tile import tile
 from Tetromino import Tetromino
 from Scoreboard import Scoreboard
 import random
+import Ball
 
 # Put each class in its own module, using the same name for both.
 # Then use statements like the following, but for YOUR classes in YOUR modules:
@@ -45,6 +46,9 @@ class Game:
         self.newspeed = 0
         self.tetrisstage = 0
         self.levelspeed = 15
+        self.ball = Ball.Ball(screen, 16, 16, 1, .4)
+        self.paddle_top = Ball.Paddle(screen, 192, 72, 32, 4)
+        self.paddle_bottom = Ball.Paddle(screen, 192, 96, 32, 4)
         self.tetrisstage = 0
 
 
@@ -66,6 +70,10 @@ class Game:
         if self.tetromino != None:
             self.tetromino.draw(self.screen)
 
+        self.ball.draw(self.screen)
+        self.paddle_top.draw(self.screen)
+        self.paddle_bottom.draw(self.screen)
+
 
         # Use something like the following, but for the objects in YOUR game:
         #     self.fighter.draw()
@@ -77,7 +85,7 @@ class Game:
         # Use something like the following, but for the objects in YOUR game:
 
         if self.gamestate == 1:
-            
+
             if True not in [self.emptyanimation, self.tetrisinaction, self.stoptetromino]:
                 pygame.time.wait(1000)
                 self.spawntetromino()
@@ -89,7 +97,7 @@ class Game:
                     self.emptyanimation = False
                     self.framecount = -1
                 self.framecount += 1
-            
+
             if self.tetrominorotating:
                 self.tetromino.rotate(self.tetrisgrid.get_filled())
                 self.tetrominorotating = False
@@ -138,9 +146,36 @@ class Game:
                 self.speed = self.newspeed
                 self.speedchange = False
                 self.framecount = 0
-            
+
             self.score = self.tetrisgrid.update_score()
             self.scoreboard.score = self.score
+
+        # Starting Breakout
+        self.ball.move()
+
+        if self.paddle_top.hit_box.collidepoint(self.ball.x, self.ball.y):
+            self.ball.bonk_top()
+
+        if self.paddle_bottom.hit_box.collidepoint(self.ball.x, self.ball.y):
+            self.ball.bonk_bottom()
+
+        pressed_keys = pygame.key.get_pressed()
+        if pressed_keys[pygame.K_UP]:
+            self.paddle_top.y -= 5
+            self.paddle_bottom.y -= 5
+            self.paddle_top.hit_box.move(0, - 5)
+            self.paddle_bottom.hit_box.move(0, - 5)
+            # self.paddle_top.hit_box.y -= 5
+            # self.paddle_bottom.hit_box.y -= 5
+
+        if pressed_keys[pygame.K_DOWN]:
+            self.paddle_top.y += 5
+            self.paddle_bottom.y += 5
+            self.paddle_top.hit_box.move(0, 5)
+            self.paddle_bottom.hit_box.move(0, 5)
+            # self.paddle_top.hit_box.y += 5
+            # self.paddle_bottom.hit_box.y += 5
+
 
         #     self.enemies.move()
         #     self.missiles.handle_explosions(self.enemies)
