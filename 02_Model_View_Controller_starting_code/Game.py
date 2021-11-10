@@ -33,6 +33,7 @@ class Game:
         #------------------#
         # TETRIS VARIABLES #
         #------------------#
+        self.screen = screen
         self.emptyanimation = False
         self.tetrisinaction = False
         self.tetromino = None
@@ -46,11 +47,12 @@ class Game:
         self.newspeed = 0
         self.tetrisstage = 0
         self.levelspeed = 15
-        self.ball = Ball.Ball(screen, 16, 16, 1, .4)
-        self.paddle_top = Ball.Paddle(screen, 192, 72, 32, 4)
-        self.paddle_bottom = Ball.Paddle(screen, 192, 96, 32, 4)
-        self.tetrisstage = 0
 
+
+
+        self.ball = None
+        self.paddle_top = None
+        self.paddle_bottom = None
 
 
         self.scoreboard = Scoreboard(self.screen)
@@ -70,9 +72,10 @@ class Game:
         if self.tetromino != None:
             self.tetromino.draw(self.screen)
 
-        self.ball.draw(self.screen)
-        self.paddle_top.draw(self.screen)
-        self.paddle_bottom.draw(self.screen)
+        if self.ball != None:
+            self.ball.draw(self.screen)
+            self.paddle_top.draw(self.screen)
+            self.paddle_bottom.draw(self.screen)
 
 
         # Use something like the following, but for the objects in YOUR game:
@@ -151,30 +154,31 @@ class Game:
             self.scoreboard.score = self.score
 
         # Starting Breakout
-        self.ball.move()
+        if self.gamestate == 2:
+            self.ball.move()
 
-        if self.paddle_top.hit_box.collidepoint(self.ball.x, self.ball.y):
-            self.ball.bonk_top()
+            if self.paddle_top.hit_box.collidepoint(self.ball.x, self.ball.y):
+                self.ball.bonk_top()
 
-        if self.paddle_bottom.hit_box.collidepoint(self.ball.x, self.ball.y):
-            self.ball.bonk_bottom()
+            if self.paddle_bottom.hit_box.collidepoint(self.ball.x, self.ball.y):
+                self.ball.bonk_bottom()
 
-        pressed_keys = pygame.key.get_pressed()
-        if pressed_keys[pygame.K_UP]:
-            self.paddle_top.y -= 5
-            self.paddle_bottom.y -= 5
-            self.paddle_top.hit_box.move(0, - 5)
-            self.paddle_bottom.hit_box.move(0, - 5)
-            # self.paddle_top.hit_box.y -= 5
-            # self.paddle_bottom.hit_box.y -= 5
+            pressed_keys = pygame.key.get_pressed()
+            if pressed_keys[pygame.K_UP]:
+                self.paddle_top.y -= 5
+                self.paddle_bottom.y -= 5
+                self.paddle_top.hit_box.move(0, - 5)
+                self.paddle_bottom.hit_box.move(0, - 5)
+                # self.paddle_top.hit_box.y -= 5
+                # self.paddle_bottom.hit_box.y -= 5
 
-        if pressed_keys[pygame.K_DOWN]:
-            self.paddle_top.y += 5
-            self.paddle_bottom.y += 5
-            self.paddle_top.hit_box.move(0, 5)
-            self.paddle_bottom.hit_box.move(0, 5)
-            # self.paddle_top.hit_box.y += 5
-            # self.paddle_bottom.hit_box.y += 5
+            if pressed_keys[pygame.K_DOWN]:
+                self.paddle_top.y += 5
+                self.paddle_bottom.y += 5
+                self.paddle_top.hit_box.move(0, 5)
+                self.paddle_bottom.hit_box.move(0, 5)
+                # self.paddle_top.hit_box.y += 5
+                # self.paddle_bottom.hit_box.y += 5
 
 
         #     self.enemies.move()
@@ -184,3 +188,8 @@ class Game:
         i = random.randrange(0, 7, 1)
         self.tetromino = Tetromino(["I", "J", "L", "O", "T", "S", "Z"][i])
         self.tetrisinaction = True
+    
+    def debugspawnbreakout(self):
+        self.ball = Ball.Ball(self.screen, 16, 16, 1, .4)
+        self.paddle_top = Ball.Paddle(self.screen, 192, 72, 32, 4)
+        self.paddle_bottom = Ball.Paddle(self.screen, 192, 96, 32, 4)

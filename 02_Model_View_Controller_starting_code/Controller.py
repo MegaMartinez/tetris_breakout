@@ -19,13 +19,19 @@ class Controller:
 
         pressed_keys = pygame.key.get_pressed()
         if pressed_keys[pygame.K_ESCAPE]:
-            pygame.quit()
+            raise Exception("PROGRAM QUIT VOLUNTARILY")
         
         # These keys are purely for debug. REMEMBER TO DELETE THEM LATER
-        if pressed_keys[pygame.K_u]:
+        if pressed_keys[pygame.K_1]:
             if self.runonce == 0:
                 self.game.emptyanimation = True
                 self.game.gamestate = 1
+            self.runonce = 1
+        
+        if pressed_keys[pygame.K_2]:
+            if self.runonce == 0:
+                self.game.debugspawnbreakout()
+                self.game.gamestate = 2
             self.runonce = 1
 
         if pressed_keys[pygame.K_RSHIFT]:
