@@ -43,6 +43,7 @@ class Game:
         self.tetrominomovedir = 0
         self.speed = 15
         self.newspeed = 0
+        self.tetrisstage = 0
         self.levelspeed = 15
         self.tetrisstage = 0
 
@@ -124,7 +125,7 @@ class Game:
                             self.tetrisinaction = True
                             self.framecount = 0
                 self.framecount += 1
-            
+
             if self.tetrisgrid.row[0][4].state == 2:
                 raise Exception("GAME OVER")
 
@@ -138,7 +139,8 @@ class Game:
                 self.speedchange = False
                 self.framecount = 0
             
-            self.score = self.tetrisgrid.updatescore()
+            self.score = self.tetrisgrid.update_score()
+            self.scoreboard.score = self.score
 
         #     self.enemies.move()
         #     self.missiles.handle_explosions(self.enemies)

@@ -63,7 +63,7 @@ class tetrisgrid:
                 if self.row[ky][kx].state == 2:
                     countfilled += 1
             if countfilled == 10: #Add score here
-                self.score += 200
+                self.score += 100
                 for kx in range(10):
                     self.row[ky][kx].empty_basic()
         for ky in range(19, -1, -1):
@@ -97,9 +97,9 @@ class tetrisgrid:
         for kx in range(10):
             self.row[19][kx].stophere = True
 
-    def updatescore(self):
+    def update_score(self):
         return self.score
                         
         
-                    
+
 
