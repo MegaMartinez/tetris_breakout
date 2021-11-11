@@ -40,7 +40,6 @@ class tetrisgrid:
             for kx in range(10):
                 if self.row[ky][kx].stophere == True:
                     final += [[self.row[ky][kx].posx, self.row[ky][kx].posy]]
-                    print()
         return final
 
     def get_filled(self):
