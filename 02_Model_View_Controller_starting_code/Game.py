@@ -153,7 +153,7 @@ class Game:
             self.score = self.tetrisgrid.update_score()
             self.scoreboard.score = self.score
 
-        # Starting Breakout
+        # Starting Breakout 22222222222222222222222222222222222222222222222222
         if self.gamestate == 2:
             self.ball.move()
 
@@ -165,20 +165,18 @@ class Game:
 
             pressed_keys = pygame.key.get_pressed()
             if pressed_keys[pygame.K_UP]:
-                self.paddle_top.y -= 5
-                self.paddle_bottom.y -= 5
-                self.paddle_top.hit_box.move(0, - 5)
-                self.paddle_bottom.hit_box.move(0, - 5)
-                # self.paddle_top.hit_box.y -= 5
-                # self.paddle_bottom.hit_box.y -= 5
+                if self.paddle_top.y > 0:
+                    self.paddle_top.y -= 5
+                    self.paddle_bottom.y -= 5
+                    self.paddle_top.hit_box.y -= 5
+                    self.paddle_bottom.hit_box.y -= 5
 
             if pressed_keys[pygame.K_DOWN]:
-                self.paddle_top.y += 5
-                self.paddle_bottom.y += 5
-                self.paddle_top.hit_box.move(0, 5)
-                self.paddle_bottom.hit_box.move(0, 5)
-                # self.paddle_top.hit_box.y += 5
-                # self.paddle_bottom.hit_box.y += 5
+                if self.paddle_bottom.y < self.screen.get_height():
+                    self.paddle_top.y += 5
+                    self.paddle_bottom.y += 5
+                    self.paddle_top.hit_box.y += 5
+                    self.paddle_bottom.hit_box.y += 5
 
 
         #     self.enemies.move()
