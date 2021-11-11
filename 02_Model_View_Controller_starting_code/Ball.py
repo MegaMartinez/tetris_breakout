@@ -9,7 +9,7 @@ class Block():
         self.health = 1
 
 class Wall():
-    def __init__(self, screen, block_rows):
+    def __init__(self, screen): #Trying to get the Tetris blocks onto the breakout game
         self.screen = screen
         self.blocks = []
         for j in range(len(tetrisgrid.get_filled())):
