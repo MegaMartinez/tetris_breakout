@@ -1,3 +1,5 @@
+import random
+
 import pygame
 from tetrisgrid import tetrisgrid
 from filesystem import file
@@ -48,12 +50,14 @@ class Ball():
     #     return self.y
 
     def bonk_top(self):
+        ran = random.uniform(-1.0, 1.0)
         self.speed_x = -self.speed_x
-        self.speed_y = abs(self.speed_y)
+        self.speed_y = abs(self.speed_y + ran)
 
     def bonk_bottom(self):
+        ran = random.uniform(-1.0,1.0)
         self.speed_x = -self.speed_x
-        self.speed_y = -abs(self.speed_y)
+        self.speed_y = -abs(self.speed_y + ran)
 
     # def bomb(self):
     #     if power_bomb == True:

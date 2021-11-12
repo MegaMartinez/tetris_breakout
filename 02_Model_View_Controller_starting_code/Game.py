@@ -52,8 +52,6 @@ class Game:
 
 
         self.ball = None
-        # self.paddle_top = None        TODO: Uncomment if necessary
-        # self.paddle_bottom = None
         self.paddle = None
 
 
@@ -76,8 +74,6 @@ class Game:
 
         if self.ball != None:
             self.ball.draw(self.screen)
-            # self.paddle_top.draw(self.screen)      TODO: Uncomment if necessary
-            # self.paddle_bottom.draw(self.screen)
             self.paddle.draw()
 
 
@@ -169,15 +165,15 @@ class Game:
             pressed_keys = pygame.key.get_pressed()
             if pressed_keys[pygame.K_UP]:
                 if self.paddle.y > 0:
-                    self.paddle.y -= 5
-                    self.paddle.top_hitbox.y -= 5
-                    self.paddle.bottom_hitbox.y -= 5
+                    self.paddle.y -= 3
+                    self.paddle.top_hitbox.y -= 3
+                    self.paddle.bottom_hitbox.y -= 3
 
             if pressed_keys[pygame.K_DOWN]:
                 if self.paddle.y < self.screen.get_height():
-                    self.paddle.y += 5
-                    self.paddle.top_hitbox.y += 5
-                    self.paddle.bottom_hitbox.y += 5
+                    self.paddle.y += 3
+                    self.paddle.top_hitbox.y += 3
+                    self.paddle.bottom_hitbox.y += 3
 
 
         #     self.enemies.move()
