@@ -21,7 +21,7 @@ class Controller:
         if pressed_keys[pygame.K_ESCAPE]:
             raise Exception("PROGRAM QUIT VOLUNTARILY")
         
-        # These keys are purely for debug. REMEMBER TO DELETE THEM LATER
+        # These keys are purely for debug. TODO: REMEMBER TO DELETE THEM LATER
         if pressed_keys[pygame.K_1]:
             if self.runonce == 0:
                 self.game.emptyanimation = True

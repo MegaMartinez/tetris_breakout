@@ -69,7 +69,7 @@ class Paddle:
         self.hit_box = pygame.Rect(self.x, self.y, self.width, self.height)
 
     def draw(self, screen):
-        pygame.draw.line(screen, (255, 255, 255), (self.x, self.y + .5*self.height), (self.x, self.y - .5*self.height), 4)
+        pygame.draw.line(screen, (255, 255, 255), (self.x, self.y + .5 * self.height), (self.x, self.y - .5 * self.height), 4)
         # Parameters (screen, color, start position, radius)
 
     # def expand_paddle(self):
