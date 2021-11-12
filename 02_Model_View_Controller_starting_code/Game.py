@@ -47,6 +47,7 @@ class Game:
         self.newspeed = 0
         self.tetrisstage = 0
         self.levelspeed = 15
+        self.lastpickedshape = None
 
 
 
@@ -183,8 +184,11 @@ class Game:
         #     self.missiles.handle_explosions(self.enemies)
 
     def spawntetromino(self):
-        i = random.randrange(0, 7, 1)
-        self.tetromino = Tetromino(["I", "J", "L", "O", "T", "S", "Z"][i])
+        letterlist = ["I", "J", "L", "O", "T", "S", "Z"]
+        if self.lastpickedshape != None:
+            letterlist.remove(self.lastpickedshape)
+        self.lastpickedshape = random.choice(letterlist)
+        self.tetromino = Tetromino(self.lastpickedshape)
         self.tetrisinaction = True
     
     def debugspawnbreakout(self):
