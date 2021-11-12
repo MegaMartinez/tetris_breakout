@@ -150,7 +150,7 @@ class Game:
                     self.tetromino.movehorizontal(self.tetrominomovedir, self.tetrisgrid.get_filled())
                 self.tetrominomoving = False
 
-            if self.speedchange:
+            if self.speedchange and not self.emptyanimation:
                 self.speed = self.newspeed
                 self.speedchange = False
                 self.framecount = 0
