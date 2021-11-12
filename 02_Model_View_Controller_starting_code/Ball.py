@@ -1,5 +1,6 @@
 import pygame
 from tetrisgrid import tetrisgrid
+from filesystem import file
 
 class Block():
     def __init__(self, screen, x, y):
@@ -48,11 +49,11 @@ class Ball():
 
     def bonk_top(self):
         self.speed_x = -self.speed_x
-        self.speed_y = -self.speed_y
+        self.speed_y = abs(self.speed_y)
 
     def bonk_bottom(self):
         self.speed_x = -self.speed_x
-        self.speed_y = -self.speed_y
+        self.speed_y = -abs(self.speed_y)
 
     # def bomb(self):
     #     if power_bomb == True:
@@ -60,17 +61,29 @@ class Ball():
 
 
 class Paddle:
-    def __init__(self, screen, x, y, height, width):
-        self.x = x
+    def __init__(self, screen, y):
+        self.x = 224
         self.y = y
         self.screen = screen
-        self.height = height
-        self.width = width
-        self.hit_box = pygame.Rect(self.x, self.y, self.width, self.height)
+        self.image = pygame.image.load(file("test_paddle.png"))
+        self.height = self.image.get_height()
+        self.width = self.image.get_width()
+        # self.hit_box = pygame.Rect(self.x, self.y, self.width, self.height)
+        self.top_hitbox = pygame.Rect(self.x, self.y, self.image.get_width(), self.image.get_height())
+        self.bottom_hitbox = pygame.Rect(self.x, self.y - self.image.get_height(), self.image.get_width(), self.image.get_height())
 
-    def draw(self, screen):
-        pygame.draw.line(screen, (255, 255, 255), (self.x, self.y + .5 * self.height), (self.x, self.y - .5 * self.height), 4)
+    def draw(self):
+        self.screen.blit(self.image, (self.x, self.y))
+        self.screen.blit(self.image, (self.x, self.y - self.image.get_height()))
+        # pygame.draw.line(screen, (255, 255, 255), (self.x, self.y + .5 * self.height), (self.x, self.y - .5 * self.height), 4)
         # Parameters (screen, color, start position, radius)
+
+    def give_top(self):
+        return self.top_hitbox
+
+    def give_bottom(self):
+        return self.bottom_hitbox
+
 
     # def expand_paddle(self):
     #     if power_long == True:

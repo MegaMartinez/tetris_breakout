@@ -51,8 +51,9 @@ class Game:
 
 
         self.ball = None
-        self.paddle_top = None
-        self.paddle_bottom = None
+        # self.paddle_top = None        TODO: Uncomment if necessary
+        # self.paddle_bottom = None
+        self.paddle = None
 
 
         self.scoreboard = Scoreboard(self.screen)
@@ -74,8 +75,9 @@ class Game:
 
         if self.ball != None:
             self.ball.draw(self.screen)
-            self.paddle_top.draw(self.screen)
-            self.paddle_bottom.draw(self.screen)
+            # self.paddle_top.draw(self.screen)      TODO: Uncomment if necessary
+            # self.paddle_bottom.draw(self.screen)
+            self.paddle.draw()
 
 
         # Use something like the following, but for the objects in YOUR game:
@@ -157,26 +159,24 @@ class Game:
         if self.gamestate == 2:
             self.ball.move()
 
-            if self.paddle_top.hit_box.collidepoint(self.ball.x, self.ball.y):
+            if self.paddle.give_top().collidepoint(self.ball.x, self.ball.y):
                 self.ball.bonk_top()
 
-            if self.paddle_bottom.hit_box.collidepoint(self.ball.x, self.ball.y):
+            if self.paddle.give_bottom().collidepoint(self.ball.x, self.ball.y):
                 self.ball.bonk_bottom()
 
             pressed_keys = pygame.key.get_pressed()
             if pressed_keys[pygame.K_UP]:
-                if self.paddle_top.y > 0:
-                    self.paddle_top.y -= 5
-                    self.paddle_bottom.y -= 5
-                    self.paddle_top.hit_box.y -= 5
-                    self.paddle_bottom.hit_box.y -= 5
+                if self.paddle.y > 0:
+                    self.paddle.y -= 5
+                    self.paddle.top_hitbox.y -= 5
+                    self.paddle.bottom_hitbox.y -= 5
 
             if pressed_keys[pygame.K_DOWN]:
-                if self.paddle_bottom.y < self.screen.get_height():
-                    self.paddle_top.y += 5
-                    self.paddle_bottom.y += 5
-                    self.paddle_top.hit_box.y += 5
-                    self.paddle_bottom.hit_box.y += 5
+                if self.paddle.y < self.screen.get_height():
+                    self.paddle.y += 5
+                    self.paddle.top_hitbox.y += 5
+                    self.paddle.bottom_hitbox.y += 5
 
 
         #     self.enemies.move()
@@ -189,5 +189,6 @@ class Game:
     
     def debugspawnbreakout(self):
         self.ball = Ball.Ball(self.screen, 16, 16, 1, .4)
-        self.paddle_top = Ball.Paddle(self.screen, 192, 72, 32, 4)
-        self.paddle_bottom = Ball.Paddle(self.screen, 192, 96, 32, 4)
+        # self.paddle_top = Ball.Paddle(self.screen, 192, 72, 32, 4)
+        # self.paddle_bottom = Ball.Paddle(self.screen, 192, 96, 32, 4)
+        self.paddle = Ball.Paddle(self.screen, 92)
