@@ -26,6 +26,7 @@ class tetrisgrid:
             column = []
         self.row = row
         self.score = 0
+
     def clear_next_frame(self):
         for ky in range(20):
             for kx in range(10):

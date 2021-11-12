@@ -67,9 +67,9 @@ class Game:
 
     def draw_game(self):
         """ Ask all the objects in the game to draw themselves. """
-        self.scoreboard.draw()
         for k in range(len(self.tetrisgrid.row)):
             for k2 in range(len(self.tetrisgrid.row[k])):
+                self.scoreboard.draw()
                 self.tetrisgrid.row[k][k2].draw(self.screen)
         if self.tetromino != None:
             self.tetromino.draw(self.screen)
@@ -141,7 +141,9 @@ class Game:
                 self.framecount += 1
 
             if self.tetrisgrid.row[0][4].state == 2:
-                raise Exception("GAME OVER")
+                self.gamestate = 2
+                self.debugspawnbreakout()
+                # raise Exception("GAME OVER")
 
             if self.tetrominomoving:
                 if self.tetromino != None:
@@ -179,6 +181,8 @@ class Game:
                     self.paddle.top_hitbox.y += 5
                     self.paddle.bottom_hitbox.y += 5
 
+            self.score = self.ball.update_score()
+            self.scoreboard.score = self.score
 
         #     self.enemies.move()
         #     self.missiles.handle_explosions(self.enemies)

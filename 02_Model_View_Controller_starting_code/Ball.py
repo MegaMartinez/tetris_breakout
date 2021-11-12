@@ -8,6 +8,7 @@ class Block():
         self.x = x
         self.y = y
         self.health = 1
+        self.is_dead = False
 
 class Wall():
     def __init__(self, screen): #Trying to get the Tetris blocks onto the breakout game
@@ -26,6 +27,7 @@ class Ball():
         self.speed_y = speed_y
         self.radius = 4
         self.color = (255, 255, 255)
+        self.score = 0
 
     def draw(self, screen):
         pygame.draw.circle(screen, self.color, (self.x, self.y), self.radius)
@@ -50,14 +52,18 @@ class Ball():
     def bonk_top(self):
         self.speed_x = -self.speed_x
         self.speed_y = abs(self.speed_y)
+        self.score += 5 + self.score ** 4
 
     def bonk_bottom(self):
         self.speed_x = -self.speed_x
         self.speed_y = -abs(self.speed_y)
+        self.score += 5 + self.score ** 4
 
     # def bomb(self):
     #     if power_bomb == True:
     #         self.color = (150, 100, 80)
+    def update_score(self):
+        return self.score
 
 
 class Paddle:
