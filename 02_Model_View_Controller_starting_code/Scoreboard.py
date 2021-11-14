@@ -12,5 +12,6 @@ class Scoreboard():
         score_image = self.font.render(score_string, True, (255, 255, 255))
         score_letter = "Score"
         score = self.font.render(score_letter, True, (255, 255, 255))
-        self.screen.blit(score_image, (150, 40))
-        self.screen.blit(score, (150, 18))
+        self.screen.blit(score_image, (100, 12))
+        self.screen.blit(score, (100, 0))
+        pygame.draw.line(self.screen, (100, 100, 100), (0, 23), (150, 23))

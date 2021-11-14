@@ -36,11 +36,11 @@ class Ball():
     def move(self):
         self.y += self.speed_y
         self.x += self.speed_x
-        if self.y + self.radius > 184 or self.y - self.radius < 0:
+        if self.y + self.radius > 184 or self.y - self.radius < 23:
             self.speed_y = - self.speed_y
-        if self.x - self.radius < 0:
+        if self.x + self.radius > 180:
             self.speed_x = - self.speed_x
-        if self.x + self.radius > 244:
+        if self.x - self.radius < 0:
             raise Exception("GAME OVER")
 
     # def give_x(self):
@@ -68,7 +68,7 @@ class Ball():
 
 class Paddle:
     def __init__(self, screen, y):
-        self.x = 224
+        self.x = 30
         self.y = y
         self.screen = screen
         self.image = pygame.image.load(file("test_paddle.png"))
