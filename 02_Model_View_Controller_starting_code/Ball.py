@@ -52,12 +52,12 @@ class Ball():
     def bonk_top(self):
         self.speed_x = -self.speed_x
         self.speed_y = abs(self.speed_y)
-        self.score += 5 + self.score ** 4
+        self.score += 5
 
     def bonk_bottom(self):
         self.speed_x = -self.speed_x
         self.speed_y = -abs(self.speed_y)
-        self.score += 5 + self.score ** 4
+        self.score += 5
 
     # def bomb(self):
     #     if power_bomb == True:

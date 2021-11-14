@@ -181,8 +181,8 @@ class Game:
                     self.paddle.top_hitbox.y += 5
                     self.paddle.bottom_hitbox.y += 5
 
-            self.score = self.ball.update_score()
-            self.scoreboard.score = self.score
+            self.score2 = self.ball.update_score()
+            self.scoreboard.score = self.score + self.score2
 
         #     self.enemies.move()
         #     self.missiles.handle_explosions(self.enemies)
