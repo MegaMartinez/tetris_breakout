@@ -54,16 +54,14 @@ class Ball():
     def bonk_top(self):
         ran = random.uniform(-1.0, 1.0)
         self.speed_x = -self.speed_x
-        self.speed_y = abs(self.speed_y)
-        self.score += 5
         self.speed_y = abs(self.speed_y + ran)
+        self.score += 5
 
     def bonk_bottom(self):
         ran = random.uniform(-1.0,1.0)
         self.speed_x = -self.speed_x
-        self.speed_y = -abs(self.speed_y)
-        self.score += 5
         self.speed_y = -abs(self.speed_y + ran)
+        self.score += 5
 
     # def bomb(self):
     #     if power_bomb == True:
