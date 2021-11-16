@@ -65,9 +65,9 @@ class Game:
 
     def draw_game(self):
         """ Ask all the objects in the game to draw themselves. """
-        self.scoreboard.draw()
         for k in range(len(self.tetrisgrid.row)):
             for k2 in range(len(self.tetrisgrid.row[k])):
+                self.scoreboard.draw()
                 self.tetrisgrid.row[k][k2].draw(self.screen)
         if self.tetromino != None:
             self.tetromino.draw(self.screen)
@@ -137,14 +137,16 @@ class Game:
                 self.framecount += 1
 
             if self.tetrisgrid.row[0][4].state == 2:
-                raise Exception("GAME OVER")
+                self.gamestate = 2
+                self.debugspawnbreakout()
+                # raise Exception("GAME OVER")
 
             if self.tetrominomoving:
                 if self.tetromino != None:
                     self.tetromino.movehorizontal(self.tetrominomovedir, self.tetrisgrid.get_filled())
                 self.tetrominomoving = False
 
-            if self.speedchange:
+            if self.speedchange and not self.emptyanimation:
                 self.speed = self.newspeed
                 self.speedchange = False
                 self.framecount = 0
@@ -175,6 +177,8 @@ class Game:
                     self.paddle.top_hitbox.y += 3
                     self.paddle.bottom_hitbox.y += 3
 
+            self.score2 = self.ball.update_score()
+            self.scoreboard.score = self.score + self.score2
 
         #     self.enemies.move()
         #     self.missiles.handle_explosions(self.enemies)
@@ -188,7 +192,7 @@ class Game:
         self.tetrisinaction = True
     
     def debugspawnbreakout(self):
-        self.ball = Ball.Ball(self.screen, 16, 16, 1, .4)
+        self.ball = Ball.Ball(self.screen, 140, 50, -1, .4)
         # self.paddle_top = Ball.Paddle(self.screen, 192, 72, 32, 4)
         # self.paddle_bottom = Ball.Paddle(self.screen, 192, 96, 32, 4)
         self.paddle = Ball.Paddle(self.screen, 92)

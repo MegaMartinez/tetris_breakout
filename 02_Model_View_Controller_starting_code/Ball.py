@@ -10,6 +10,7 @@ class Block():
         self.x = x
         self.y = y
         self.health = 1
+        self.is_dead = False
 
 class Wall():
     def __init__(self, screen): #Trying to get the Tetris blocks onto the breakout game
@@ -28,6 +29,7 @@ class Ball():
         self.speed_y = speed_y
         self.radius = 4
         self.color = (255, 255, 255)
+        self.score = 0
 
     def draw(self, screen):
         pygame.draw.circle(screen, self.color, (self.x, self.y), self.radius)
@@ -36,11 +38,11 @@ class Ball():
     def move(self):
         self.y += self.speed_y
         self.x += self.speed_x
-        if self.y + self.radius > 184 or self.y - self.radius < 0:
+        if self.y + self.radius > 184 or self.y - self.radius < 23:
             self.speed_y = - self.speed_y
-        if self.x - self.radius < 0:
+        if self.x + self.radius > 180:
             self.speed_x = - self.speed_x
-        if self.x + self.radius > 244:
+        if self.x - self.radius < 0:
             raise Exception("GAME OVER")
 
     # def give_x(self):
@@ -52,21 +54,27 @@ class Ball():
     def bonk_top(self):
         ran = random.uniform(-1.0, 1.0)
         self.speed_x = -self.speed_x
+        self.speed_y = abs(self.speed_y)
+        self.score += 5
         self.speed_y = abs(self.speed_y + ran)
 
     def bonk_bottom(self):
         ran = random.uniform(-1.0,1.0)
         self.speed_x = -self.speed_x
+        self.speed_y = -abs(self.speed_y)
+        self.score += 5
         self.speed_y = -abs(self.speed_y + ran)
 
     # def bomb(self):
     #     if power_bomb == True:
     #         self.color = (150, 100, 80)
+    def update_score(self):
+        return self.score
 
 
 class Paddle:
     def __init__(self, screen, y):
-        self.x = 224
+        self.x = 30
         self.y = y
         self.screen = screen
         self.image = pygame.image.load(file("test_paddle.png"))
