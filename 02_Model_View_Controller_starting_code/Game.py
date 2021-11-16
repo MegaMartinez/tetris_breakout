@@ -166,13 +166,13 @@ class Game:
 
             pressed_keys = pygame.key.get_pressed()
             if pressed_keys[pygame.K_UP]:
-                if self.paddle.y > 0:
+                if self.paddle.y > 23 + self.paddle.height + 1:
                     self.paddle.y -= 3
                     self.paddle.top_hitbox.y -= 3
                     self.paddle.bottom_hitbox.y -= 3
 
             if pressed_keys[pygame.K_DOWN]:
-                if self.paddle.y < self.screen.get_height():
+                if self.paddle.y < self.screen.get_height() - self.paddle.height:
                     self.paddle.y += 3
                     self.paddle.top_hitbox.y += 3
                     self.paddle.bottom_hitbox.y += 3
