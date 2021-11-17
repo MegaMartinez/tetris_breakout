@@ -20,6 +20,18 @@ class Wall():
             for k in range(8):
                 self.blocks.append(tetrisgrid.get_filled())
 
+    def is_defeated(self):
+        return len(self.blocks)
+
+    def draw(self):
+        for block in self.blocks:
+            block.draw()
+
+    def remove_dead_blocks(self):
+        for k in range(len(self.blocks) - 1, -1, -1):
+            if self.blocks[k].is_dead:
+                del self.blocks[k]
+
 class Ball():
     def __init__(self, screen, start_x, start_y, speed_x, speed_y):
         self.screen = screen
