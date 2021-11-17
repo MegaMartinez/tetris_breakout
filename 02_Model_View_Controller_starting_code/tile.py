@@ -77,10 +77,11 @@ class tile:
         if self.hitbox != None:
             if self.hitbox.collidepoint(x, y):
                 self.empty_basic()
-                if x + 4 <= self.hitbox.x or x + 4 >= self.hitbox.x + self.img.get_width():
+                if x + 8 <= self.hitbox.x or x + 8 >= self.hitbox.x + self.img.get_width():
                     ball.bonk_block_side()
                     self.hitbox = None
-                elif x >= self.hitbox.x or x <= self.hitbox.x + self.img.get_width():
+                # elif x + 6 >= self.hitbox.x or x + 6 <= self.hitbox.x + self.img.get_width():
+                else:
                     ball.bonk_block_top()
                     self.hitbox = None
 
