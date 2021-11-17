@@ -53,7 +53,7 @@ class tetrisgrid:
 
     def debugfill(self, color):
         # will delete later
-        # srsly please remind me to delete this it's completely useless
+        # srsly please remind me to delete this it's completely useless TODO: get rid of this
         pass
     
     def checkrow(self):

@@ -164,6 +164,8 @@ class Game:
             if self.paddle.give_bottom().collidepoint(self.ball.x, self.ball.y):
                 self.ball.bonk_bottom()
 
+
+
             pressed_keys = pygame.key.get_pressed()
             if pressed_keys[pygame.K_UP]:
                 if self.paddle.y > 23 + self.paddle.height + 1:
