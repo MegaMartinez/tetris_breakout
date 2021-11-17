@@ -54,7 +54,7 @@ class Ball():
             self.speed_y = - self.speed_y
         if self.x + self.radius > 180:
             self.speed_x = - self.speed_x
-        if self.x - self.radius < 0:
+        if self.x - self.radius < 6:
             raise Exception("GAME OVER")
 
     # def give_x(self):
@@ -64,19 +64,23 @@ class Ball():
     #     return self.y
 
     def bonk_top(self):
-        ran = random.uniform(-1.0, 1.0)
-        self.speed_x = -self.speed_x + .005
+        ran = random.uniform(-0.5, 0.5)
+        self.speed_x = -self.speed_x + .01
         self.speed_y = abs(self.speed_y + ran)
         self.score += 5
 
     def bonk_bottom(self):
-        ran = random.uniform(-1.0, 1.0)
-        self.speed_x = -self.speed_x + .005
+        ran = random.uniform(-0.5, 0.5)
+        self.speed_x = -self.speed_x + .01
         self.speed_y = -abs(self.speed_y + ran)
         self.score += 5
 
-    def bonk_block(self):
+    def bonk_block_side(self):
         self.speed_x = -self.speed_x
+        self.score += 20
+
+    def bonk_block_top(self):
+        self.speed_y = -self.speed_y
         self.score += 20
 
     # def bomb(self):
