@@ -88,7 +88,7 @@ class Ball():
 
 class Paddle:
     def __init__(self, screen, y):
-        self.x = 30
+        self.x = 8
         self.y = y
         self.screen = screen
         self.image = pygame.image.load(file("test_paddle.png"))

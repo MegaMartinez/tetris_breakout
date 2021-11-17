@@ -50,11 +50,6 @@ class tetrisgrid:
                 if self.row[ky][kx].state == 2:
                     final += [[self.row[ky][kx].posx, self.row[ky][kx].posy]]
         return final
-
-    def debugfill(self, color):
-        # will delete later
-        # srsly please remind me to delete this it's completely useless TODO: get rid of this
-        pass
     
     def checkrow(self):
         for ky in range(20):
@@ -99,6 +94,16 @@ class tetrisgrid:
 
     def update_score(self):
         return self.score
+    
+    def updatehitbox(self):
+        for ky in range(20):
+            for kx in range(10):
+                self.row[ky][kx].updatehitbox()
+    
+    def checkhit(self, x, y):
+        for ky in range(20):
+            for kx in range(10):
+                self.row[ky][kx].checkhit(x, y)
                         
         
 

@@ -139,6 +139,7 @@ class Game:
             if self.tetrisgrid.row[0][4].state == 2:
                 self.gamestate = 2
                 self.debugspawnbreakout()
+                self.tetromino = None
                 # raise Exception("GAME OVER")
 
             if self.tetrominomoving:
@@ -156,6 +157,7 @@ class Game:
 
         # Starting Breakout 22222222222222222222222222222222222222222222222222
         if self.gamestate == 2:
+            self.tetrisgrid.updatehitbox()
             self.ball.move()
 
             if self.paddle.give_top().collidepoint(self.ball.x, self.ball.y):
@@ -178,6 +180,8 @@ class Game:
                     self.paddle.y += 3
                     self.paddle.top_hitbox.y += 3
                     self.paddle.bottom_hitbox.y += 3
+
+            self.tetrisgrid.checkhit(self.ball.x, self.ball.y)
 
             self.score2 = self.ball.update_score()
             self.scoreboard.score = self.score + self.score2

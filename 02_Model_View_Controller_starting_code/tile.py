@@ -36,6 +36,7 @@ class tile:
         self.posx = (8 * posx)
         self.posy = (8 * posy)
         self.stophere = False
+        self.hitbox = None
 
     def blank(self):
         self.state = 0
@@ -68,3 +69,11 @@ class tile:
     def draw(self, screen):
         screen.blit(self.img, (self.posx, self.posy))
 
+    def updatehitbox(self):
+        if self.state == 2:
+            self.hitbox = pygame.Rect(self.posx, self.posy, self.img.get_width(), self.img.get_height())
+
+    def checkhit(self, x, y):
+        if self.hitbox != None:
+            if self.hitbox.collidepoint(x, y):
+                self.empty_basic()
