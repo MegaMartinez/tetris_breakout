@@ -73,8 +73,16 @@ class tile:
         if self.state == 2:
             self.hitbox = pygame.Rect(self.posx, self.posy, self.img.get_width(), self.img.get_height())
 
-    def checkhit(self, x, y):
+    def checkhit(self, x, y, ball):
         if self.hitbox != None:
             if self.hitbox.collidepoint(x, y):
                 self.empty_basic()
+                if x + 4 <= self.hitbox.x or x + 4 >= self.hitbox.x + self.img.get_width():
+                    ball.bonk_block_side()
+                    self.hitbox = None
+                elif x >= self.hitbox.x or x <= self.hitbox.x + self.img.get_width():
+                    ball.bonk_block_top()
+                    self.hitbox = None
+
+
     

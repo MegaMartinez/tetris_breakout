@@ -100,10 +100,10 @@ class tetrisgrid:
             for kx in range(10):
                 self.row[ky][kx].updatehitbox()
     
-    def checkhit(self, x, y):
+    def checkhit(self, x, y, ball):
         for ky in range(20):
             for kx in range(10):
-                self.row[ky][kx].checkhit(x, y)
+                self.row[ky][kx].checkhit(x, y, ball)
     
     def moveeverything(self):
         for ky in range(20):

@@ -179,6 +179,8 @@ class Game:
 
 
 
+
+
                 pressed_keys = pygame.key.get_pressed()
                 if pressed_keys[pygame.K_UP]:
                     if self.paddle.y > 23 + self.paddle.height + 1:
@@ -192,7 +194,7 @@ class Game:
                         self.paddle.top_hitbox.y += 3
                         self.paddle.bottom_hitbox.y += 3
 
-                self.tetrisgrid.checkhit(self.ball.x, self.ball.y)
+                self.tetrisgrid.checkhit(self.ball.x, self.ball.y, self.ball)
 
                 self.score2 = self.ball.update_score()
                 self.scoreboard.score = self.score + self.score2
@@ -209,7 +211,7 @@ class Game:
         self.tetrisinaction = True
     
     def debugspawnbreakout(self):
-        self.ball = Ball.Ball(self.screen, 140, 50, -1, .4)
+        self.ball = Ball.Ball(self.screen, 16, 50, 1, .4)
         # self.paddle_top = Ball.Paddle(self.screen, 192, 72, 32, 4)
         # self.paddle_bottom = Ball.Paddle(self.screen, 192, 96, 32, 4)
         self.paddle = Ball.Paddle(self.screen, 92)
