@@ -104,6 +104,11 @@ class tetrisgrid:
         for ky in range(20):
             for kx in range(10):
                 self.row[ky][kx].checkhit(x, y)
+    
+    def moveeverything(self):
+        for ky in range(20):
+            for kx in range(10):
+                self.row[ky][kx].posx += 1
                         
         
 

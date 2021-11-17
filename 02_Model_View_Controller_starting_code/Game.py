@@ -53,6 +53,7 @@ class Game:
 
         self.ball = None
         self.paddle = None
+        self.movegrid = False
 
 
         self.scoreboard = Scoreboard(self.screen)
@@ -138,8 +139,9 @@ class Game:
 
             if self.tetrisgrid.row[0][4].state == 2:
                 self.gamestate = 2
-                self.debugspawnbreakout()
                 self.tetromino = None
+                self.framecount = 0
+                self.movegrid = True
                 # raise Exception("GAME OVER")
 
             if self.tetrominomoving:
@@ -157,34 +159,43 @@ class Game:
 
         # Starting Breakout 22222222222222222222222222222222222222222222222222
         if self.gamestate == 2:
-            self.tetrisgrid.updatehitbox()
-            self.ball.move()
+            if self.movegrid:
+                if self.framecount % 4 == 0:
+                    self.tetrisgrid.moveeverything()
+                if self.framecount == 144:
+                    self.movegrid = False
+                    self.framecount = -1
+                    self.debugspawnbreakout()
+                self.framecount += 1
+            else:
+                self.tetrisgrid.updatehitbox()
+                self.ball.move()
 
-            if self.paddle.give_top().collidepoint(self.ball.x, self.ball.y):
-                self.ball.bonk_top()
+                if self.paddle.give_top().collidepoint(self.ball.x, self.ball.y):
+                    self.ball.bonk_top()
 
-            if self.paddle.give_bottom().collidepoint(self.ball.x, self.ball.y):
-                self.ball.bonk_bottom()
+                if self.paddle.give_bottom().collidepoint(self.ball.x, self.ball.y):
+                    self.ball.bonk_bottom()
 
 
 
-            pressed_keys = pygame.key.get_pressed()
-            if pressed_keys[pygame.K_UP]:
-                if self.paddle.y > 23 + self.paddle.height + 1:
-                    self.paddle.y -= 3
-                    self.paddle.top_hitbox.y -= 3
-                    self.paddle.bottom_hitbox.y -= 3
+                pressed_keys = pygame.key.get_pressed()
+                if pressed_keys[pygame.K_UP]:
+                    if self.paddle.y > 23 + self.paddle.height + 1:
+                        self.paddle.y -= 3
+                        self.paddle.top_hitbox.y -= 3
+                        self.paddle.bottom_hitbox.y -= 3
 
-            if pressed_keys[pygame.K_DOWN]:
-                if self.paddle.y < self.screen.get_height() - self.paddle.height:
-                    self.paddle.y += 3
-                    self.paddle.top_hitbox.y += 3
-                    self.paddle.bottom_hitbox.y += 3
+                if pressed_keys[pygame.K_DOWN]:
+                    if self.paddle.y < self.screen.get_height() - self.paddle.height:
+                        self.paddle.y += 3
+                        self.paddle.top_hitbox.y += 3
+                        self.paddle.bottom_hitbox.y += 3
 
-            self.tetrisgrid.checkhit(self.ball.x, self.ball.y)
+                self.tetrisgrid.checkhit(self.ball.x, self.ball.y)
 
-            self.score2 = self.ball.update_score()
-            self.scoreboard.score = self.score + self.score2
+                self.score2 = self.ball.update_score()
+                self.scoreboard.score = self.score + self.score2
 
         #     self.enemies.move()
         #     self.missiles.handle_explosions(self.enemies)

@@ -77,3 +77,4 @@ class tile:
         if self.hitbox != None:
             if self.hitbox.collidepoint(x, y):
                 self.empty_basic()
+    
