@@ -27,7 +27,7 @@ class Ball():
             self.speed_y = - self.speed_y
         if self.x + self.radius > 180:
             self.speed_x = - self.speed_x
-        if self.x - self.radius < 8:
+        if self.x - self.radius < 6:
             raise Exception("GAME OVER")
 
     # def give_x(self):
@@ -76,13 +76,14 @@ class Paddle:
         self.y = y
         self.screen = screen
         self.image = pygame.image.load(file("test_paddle.png"))
+        self.image2 = pygame.image.load(file("test_paddle2.png"))
         self.height = self.image.get_height()
         self.width = self.image.get_width()
         self.top_hitbox = pygame.Rect(self.x, self.y, self.image.get_width(), self.image.get_height())
         self.bottom_hitbox = pygame.Rect(self.x, self.y - self.image.get_height(), self.image.get_width(), self.image.get_height())
 
     def draw(self):
-        self.screen.blit(self.image, (self.x, self.y))
+        self.screen.blit(self.image2, (self.x, self.y))
         self.screen.blit(self.image, (self.x, self.y - self.image.get_height()))
 
     def give_top(self):
