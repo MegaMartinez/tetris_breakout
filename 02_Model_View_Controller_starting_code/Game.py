@@ -6,6 +6,7 @@ from Scoreboard import Scoreboard
 import random
 import Ball
 from Powerup import powerup
+from filesystem import file
 
 # Put each class in its own module, using the same name for both.
 # Then use statements like the following, but for YOUR classes in YOUR modules:
@@ -21,6 +22,7 @@ class Game:
         self.screen = screen
         self.tetrisgrid = tetrisgrid()
         self.framecount = 0
+        self.framecountB = 0
 
         """
         game states
@@ -56,6 +58,7 @@ class Game:
         self.paddle = None
         self.movegrid = False
         self.powerup = None
+        self.paddlelong = False
 
 
         self.scoreboard = Scoreboard(self.screen)
@@ -82,6 +85,8 @@ class Game:
         if self.powerup != None:
             self.powerup.draw(self.screen)
         
+        self.screen.blit(pygame.image.load(file("placeholderblack.png")), (0, 0))
+
         self.scoreboard.draw()
 
 
@@ -216,6 +221,14 @@ class Game:
                         self.paddle.bottom_hitbox.y += 3
 
                 self.tetrisgrid.checkhit(self.ball.x, self.ball.y, self.ball, self)
+
+                if self.paddlelong:
+                    if self.framecountB == 600:
+                        self.paddle.short_paddle()
+                        self.paddlelong = False
+                        self.framecountB = -1
+                    self.framecountB += 1
+
 
                 self.score2 = self.ball.update_score()
                 self.scoreboard.score = self.score + self.score2

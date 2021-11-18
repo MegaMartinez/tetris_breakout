@@ -31,6 +31,7 @@ class powerup:
             pass
         if self.type == 4:
             game.paddle.long_paddle()
+            game.paddlelong = True
 
     def draw(self, screen):
         pygame.draw.circle(screen, self.color, (self.x, self.y), 4)
