@@ -102,6 +102,9 @@ class Paddle:
     def long_paddle(self):
         self.image = pygame.image.load(file("test_paddle_long.png"))
         self.image2 = pygame.image.load(file("test_paddle_long2.png"))
+        self.top_hitbox = pygame.Rect(self.x, self.y, self.image.get_width(), self.image.get_height())
+        self.bottom_hitbox = pygame.Rect(self.x, self.y - self.image.get_height(), self.image.get_width(), self.image.get_height())
+
 
     def short_paddle(self):
         self.image = pygame.image.load(file("test_paddle.png"))

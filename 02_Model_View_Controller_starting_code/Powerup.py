@@ -31,9 +31,6 @@ class powerup:
             pass
         if self.type == 4:
             game.paddle.long_paddle()
-            if time.time() - self.time_since_last < 10.0:
-                game.paddle.short_paddle()
-            pass
 
     def draw(self, screen):
         pygame.draw.circle(screen, self.color, (self.x, self.y), 4)

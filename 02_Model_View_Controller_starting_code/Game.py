@@ -238,4 +238,4 @@ class Game:
         self.paddle = Ball.Paddle(self.screen, 92)
 
     def spawnpowerup(self, color, x, y):
-        self.powerup = powerup(color, x, y)
+        self.powerup = powerup("yellow", x, y)
