@@ -50,7 +50,7 @@ class Controller:
         
         if self.key_was_released_on_this_cycle(pygame.K_s, events) or self.key_was_released_on_this_cycle(pygame.K_DOWN, events):
             self.game.speedchange = True
-            self.game.newspeed = self.game.levelspeed
+            self.game.newspeed = self.game.currentspeed
 
         if self.key_was_pressed_on_this_cycle(pygame.K_a, events) or self.key_was_pressed_on_this_cycle(pygame.K_LEFT, events):
             self.game.tetrominomovedir = -8

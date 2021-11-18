@@ -55,10 +55,12 @@ class Game:
         self.speed = 15
         self.newspeed = 0
         self.tetrisstage = 0
+        self.currentspeed = 15
         self.levelspeed = 15
         self.lastpickedshape = None
         self.moveback = False
         self.nextround = False
+        self.speedupframecount = 0
 
 
 
@@ -125,9 +127,11 @@ class Game:
                     self.moveback = False
                     self.framecount = -1
                     self.nextround = True
+                    self.speedupframecount = 0
                     if self.speed != 3:
                         self.speed -= 2
                         self.levelspeed -= 2
+                        self.currentspeed = self.levelspeed
                 self.framecount += 1
             else:
                 if self.emptyanimation:
@@ -188,6 +192,12 @@ class Game:
                     if self.tetromino != None:
                         self.tetromino.movehorizontal(self.tetrominomovedir, self.tetrisgrid.get_filled())
                     self.tetrominomoving = False
+                
+                if self.speedupframecount == 900 and self.levelspeed != 3 and self.currentspeed != 3:
+                    self.currentspeed -= 1
+                    self.speed = self.currentspeed
+                    self.speedupframecount = -1
+                self.speedupframecount += 1
 
                 if self.speedchange and not self.emptyanimation:
                     self.speed = self.newspeed
@@ -206,7 +216,7 @@ class Game:
                     self.movegrid = False
                     self.framecount = -1
                     if self.ballroundspeed != 5:
-                        self.ballroundspeed += 0.8
+                        self.ballroundspeed += 0.4
                     self.debugspawnbreakout()
                 self.framecount += 1
             else:       # begins ball movement
