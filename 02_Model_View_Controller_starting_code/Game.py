@@ -189,13 +189,13 @@ class Game:
                 if self.paddle.give_bottom().collidepoint(self.ball.x, self.ball.y):
                     self.ball.bonk_bottom()
                 if self.powerup != None:
-                    if self.paddle.give_top().collidepoint(self.powerup.x, self.powerup.y):
+                    if self.paddle.give_top().collidepoint(self.powerup.x, self.powerup.y) or self.paddle.give_bottom().collidepoint(self.powerup.x, self.powerup.y):
                         self.powerup.activate(self)
                         self.powerup = None
                     
-                    if self.paddle.give_bottom().collidepoint(self.powerup.x, self.powerup.y):
-                        self.powerup.activate(self)
-                        self.powerup = None
+                    # if self.paddle.give_bottom().collidepoint(self.powerup.x, self.powerup.y):
+                    #     self.powerup.activate(self)
+                    #     self.powerup = None
 
 
 
@@ -204,7 +204,7 @@ class Game:
 
                 pressed_keys = pygame.key.get_pressed()
                 if pressed_keys[pygame.K_UP]:
-                    if self.paddle.y > 23 + self.paddle.height + 1:
+                    if self.paddle.y > self.paddle.height + self.paddle.height:
                         self.paddle.y -= 3
                         self.paddle.top_hitbox.y -= 3
                         self.paddle.bottom_hitbox.y -= 3
