@@ -323,7 +323,7 @@ class Game:
         self.paddle_speed = newspeed
 
     def spawnpowerup(self, color, x, y):    # spawns powerup
-        self.powerup = powerup("blue", x, y)
+        self.powerup = powerup(color, x, y)
 
     def blowup(self):
         self.tetrisgrid.blowup(self.ball)
