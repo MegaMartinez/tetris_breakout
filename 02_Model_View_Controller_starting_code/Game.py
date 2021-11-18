@@ -22,7 +22,12 @@ class Game:
         self.screen = screen
         self.tetrisgrid = tetrisgrid()
         self.framecount = 0
-        self.framecountB = 0
+        self.framecountY = 0
+        self.framecountO = 0
+        self.framecountG = 0
+        self.framecountP = 0
+
+
 
         """
         game states
@@ -58,12 +63,13 @@ class Game:
         self.paddle = None
         self.movegrid = False
         self.powerup = None
-        self.paddlelong = False
         self.paddle_speed = 3
 
 
         self.scoreboard = Scoreboard(self.screen)
         self.score = 0
+
+        self.activepowerups = []
 
         # Store whatever YOUR game needs, perhaps something like this:
         #     self.missiles = Missiles(self.screen)
@@ -223,12 +229,33 @@ class Game:
 
                 self.tetrisgrid.checkhit(self.ball.x, self.ball.y, self.ball, self)
 
-                if self.paddlelong:
-                    if self.framecountB == 600:
+                if "yellow" in self.activepowerups:
+                    if self.framecountY == 600:
                         self.paddle.short_paddle()
-                        self.paddlelong = False
-                        self.framecountB = -1
-                    self.framecountB += 1
+                        self.framecountY = -1
+                        self.activepowerups.remove("yellow")
+                    self.framecountY += 1
+                
+                if "green" in self.activepowerups:
+                    if self.framecountG == 600:
+                        self.ball.change_score_decr()
+                        self.framecountG = -1
+                        self.activepowerups.remove("green")
+                    self.framecountG += 1
+                
+                if "orange" in self.activepowerups:
+                    if self.framecountO == 420:
+                        self.change_paddle_speed(2)
+                        self.framecountO = -1
+                        self.activepowerups.remove("orange")
+                    self.framecountO += 1
+                
+                if "purple" in self.activepowerups:
+                    if self.framecountO == 900:
+                        self.ball.change_speed(False)
+                        self.framecountO = -1
+                        self.activepowerups.remove("purple")
+                    self.framecountO += 1
 
 
                 self.score2 = self.ball.update_score()
@@ -246,13 +273,13 @@ class Game:
         self.tetrisinaction = True
     
     def debugspawnbreakout(self):
-        self.ball = Ball.Ball(self.screen, 16, 50, 1, .5)
+        self.ball = Ball.Ball(self.screen, 16, 50, 2, 1)
         # self.paddle_top = Ball.Paddle(self.screen, 192, 72, 32, 4)
         # self.paddle_bottom = Ball.Paddle(self.screen, 192, 96, 32, 4)
         self.paddle = Ball.Paddle(self.screen, 92)
 
-    def change_paddle_speed(self):
-        self.paddle_speed = 6
+    def change_paddle_speed(self, newspeed):
+        self.paddle_speed = newspeed
 
     def spawnpowerup(self, color, x, y):
-        self.powerup = powerup("orange", x, y)
+        self.powerup = powerup(color, x, y)

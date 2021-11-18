@@ -78,7 +78,7 @@ class tile:
     def checkhit(self, x, y, ball, game):
         if self.hitbox != None:
             if self.hitbox.collidepoint(x, y):
-                if random.randrange(1, 10) == 1 and game.powerup == None:
+                if random.randrange(1, 10) == 1 and game.powerup == None and self.color not in game.activepowerups:
                     game.spawnpowerup(self.color, self.posx, self.posy)
                 self.empty_basic()
                 if x <= self.hitbox.x + 1 or x >= self.hitbox.x + self.img.get_width() - 1:

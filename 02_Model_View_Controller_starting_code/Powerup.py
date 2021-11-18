@@ -26,13 +26,16 @@ class powerup:
             pass
         if self.type == 1:
             game.ball.change_score_incr()
+            game.activepowerups += ["green"]
         if self.type == 2:
-            game.change_paddle_speed()
+            game.change_paddle_speed(6)
+            game.activepowerups += ["orange"]
         if self.type == 3:
-            game.ball.change_speed()
+            game.ball.change_speed(True)
+            game.activepowerups += ["purple"]
         if self.type == 4:
             game.paddle.long_paddle()
-            game.paddlelong = True
+            game.activepowerups += ["yellow"]
 
     def draw(self, screen):
         pygame.draw.circle(screen, self.color, (self.x, self.y), 4)

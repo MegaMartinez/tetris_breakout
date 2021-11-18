@@ -75,12 +75,19 @@ class Ball():
     #     if power_bomb == True:
     #         self.color = (150, 100, 80)
 
-    def change_speed(self):
-        self.speed_y = self.speed_y * 0.5
-        self.speed_x = self.speed_x * 0.5
+    def change_speed(self, inc):
+        if inc:
+            self.speed_y = self.speed_y * 0.5
+            self.speed_x = self.speed_x * 0.5
+        else:
+            self.speed_y = self.speed_y * 2
+            self.speed_x = self.speed_x * 2
 
     def change_score_incr(self):
         self.score_incr = self.score_incr * 2
+    
+    def change_score_decr(self):
+        self.score_incr = self.score_incr // 2
 
     def update_score(self):
         return self.score
