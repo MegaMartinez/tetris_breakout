@@ -10,8 +10,13 @@ class powerup:
         4 = yellow (long)
         """
         self.type = ["blue", "green", "orange", "purple", "yellow"].index(color)
-        self.x = posx
-        self.y = posy
+        self.x = posx + 4
+        self.y = posy + 4
+        self.color = color
+        # self.object = pygame.draw.circle(screen, color, (posx, posy), 2)
+    
+    def move(self):
+        self.x -= 1
     
     def activate(self):
         if self.type == 0:
@@ -24,3 +29,6 @@ class powerup:
             pass
         if self.type == 4:
             pass
+    
+    def draw(self, screen):
+        pygame.draw.circle(screen, self.color, (self.x, self.y), 4)

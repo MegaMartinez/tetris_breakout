@@ -53,7 +53,7 @@ class Ball():
         ran = random.uniform(-0.2, 0.2)
         self.speed_x = -self.speed_x
         self.speed_y = -abs(self.speed_y) + ran
-        self.score += 5
+        # self.score += 5
 
     def bonk_block_side(self):
         self.speed_x = -self.speed_x

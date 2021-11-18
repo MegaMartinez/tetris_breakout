@@ -5,6 +5,7 @@ from Tetromino import Tetromino
 from Scoreboard import Scoreboard
 import random
 import Ball
+from Powerup import powerup
 
 # Put each class in its own module, using the same name for both.
 # Then use statements like the following, but for YOUR classes in YOUR modules:
@@ -69,7 +70,7 @@ class Game:
         """ Ask all the objects in the game to draw themselves. """
         for k in range(len(self.tetrisgrid.row)):
             for k2 in range(len(self.tetrisgrid.row[k])):
-                self.scoreboard.draw()
+                # self.scoreboard.draw()
                 self.tetrisgrid.row[k][k2].draw(self.screen)
         if self.tetromino != None:
             self.tetromino.draw(self.screen)
@@ -77,6 +78,12 @@ class Game:
         if self.ball != None:
             self.ball.draw(self.screen)
             self.paddle.draw()
+        
+        if self.powerup != None:
+            self.powerup.draw(self.screen)
+        
+        self.scoreboard.draw()
+
 
 
         # Use something like the following, but for the objects in YOUR game:
@@ -171,12 +178,22 @@ class Game:
             else:
                 self.tetrisgrid.updatehitbox()
                 self.ball.move()
+                if self.powerup != None:
+                    self.powerup.move()
+                    if self.powerup.x < 0:
+                        self.powerup = None
 
                 if self.paddle.give_top().collidepoint(self.ball.x, self.ball.y):
                     self.ball.bonk_top()
 
                 if self.paddle.give_bottom().collidepoint(self.ball.x, self.ball.y):
                     self.ball.bonk_bottom()
+                if self.powerup != None:
+                    if self.paddle.give_top().collidepoint(self.powerup.x, self.powerup.y):
+                        self.powerup.activate()
+                    
+                    if self.paddle.give_bottom().collidepoint(self.powerup.x, self.powerup.y):
+                        self.powerup.activate()
 
 
 
@@ -216,3 +233,6 @@ class Game:
         # self.paddle_top = Ball.Paddle(self.screen, 192, 72, 32, 4)
         # self.paddle_bottom = Ball.Paddle(self.screen, 192, 96, 32, 4)
         self.paddle = Ball.Paddle(self.screen, 92)
+
+    def spawnpowerup(self, color, x, y):
+        self.powerup = powerup(color, x, y)
