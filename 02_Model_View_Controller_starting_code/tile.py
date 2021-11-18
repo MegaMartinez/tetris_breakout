@@ -61,7 +61,7 @@ class tile:
                 if colorstr[k] == self.color:
                     self.img = colored[k]
         else:
-            errormessage = ('"' + str(color) + '"' + " ISN'T A VALID COLOR YOU DUMBASS")
+            errormessage = ('"' + str(color) + '"' + " ISN'T A VALID COLOR")
             raise Exception(errormessage)
 
 
