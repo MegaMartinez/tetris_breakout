@@ -18,7 +18,7 @@ class powerup:
     def move(self):
         self.x -= 1
     
-    def activate(self):
+    def activate(self, game):
         if self.type == 0:
             pass
         if self.type == 1:

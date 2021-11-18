@@ -190,10 +190,10 @@ class Game:
                     self.ball.bonk_bottom()
                 if self.powerup != None:
                     if self.paddle.give_top().collidepoint(self.powerup.x, self.powerup.y):
-                        self.powerup.activate()
+                        self.powerup.activate(self)
                     
                     if self.paddle.give_bottom().collidepoint(self.powerup.x, self.powerup.y):
-                        self.powerup.activate()
+                        self.powerup.activate(self)
 
 
 
