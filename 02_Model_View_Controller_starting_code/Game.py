@@ -67,6 +67,7 @@ class Game:
         self.movegrid = False
         self.powerup = None
         self.paddle_speed = 3
+        self.ballroundspeed = 0.2
 
 
         self.scoreboard = Scoreboard(self.screen)
@@ -204,6 +205,8 @@ class Game:
                 if self.framecount == 128:
                     self.movegrid = False
                     self.framecount = -1
+                    if self.ballroundspeed != 5:
+                        self.ballroundspeed += 0.8
                     self.debugspawnbreakout()
                 self.framecount += 1
             else:       # begins ball movement
@@ -301,7 +304,7 @@ class Game:
         self.tetrisinaction = True
     
     def debugspawnbreakout(self):
-        self.ball = Ball.Ball(self.screen, 16, 50, 5, 0.5)
+        self.ball = Ball.Ball(self.screen, 16, 50, self.ballroundspeed, 0.5)
         # self.paddle_top = Ball.Paddle(self.screen, 192, 72, 32, 4)
         # self.paddle_bottom = Ball.Paddle(self.screen, 192, 96, 32, 4)
         self.paddle = Ball.Paddle(self.screen, 92)
@@ -310,7 +313,7 @@ class Game:
         self.paddle_speed = newspeed
 
     def spawnpowerup(self, color, x, y):    # spawns powerup
-        self.powerup = powerup(color, x, y)
+        self.powerup = powerup("blue", x, y)
 
     def blowup(self):
         self.tetrisgrid.blowup(self.ball)
@@ -320,3 +323,4 @@ class Game:
         for ky in range(20):
             for kx in range(10):
                 self.tetrisgrid.row[ky][kx].empty_basic()
+                self.tetrisgrid.row[ky][kx].hitbox = None

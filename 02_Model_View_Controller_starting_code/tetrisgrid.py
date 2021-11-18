@@ -125,9 +125,10 @@ class tetrisgrid:
         tiley = (int(ball.y) // 8) - 3
         for ky in range(3):
             for kx in range(3):
-                if tiley + ky >= 0 and tilex + kx >= 0 and tiley + ky <= 19 and tilex + kx <= 9:
-                    if self.row[tiley + ky][tilex + kx].state == 2:
-                        self.row[tiley + ky][tilex + kx].empty_basic()
+                if (tiley + ky) - 1 >= 0 and (tilex + kx) - 1 >= 0 and (tiley + ky) - 1 <= 19 and (tilex + kx) - 1 <= 9:
+                    if self.row[(tiley + ky) - 1][(tilex + kx) - 1].state == 2 and [ky, kx] != [1, 1]:
+                        self.row[(tiley + ky) - 1][(tilex + kx) - 1].empty_basic()
+                        self.row[(tiley + ky) - 1][(tilex + kx) - 1].hitbox = None
         
 
 
