@@ -5,6 +5,8 @@ TODO: Complete the following after you have COMPLETED your project.
    Be sure that your video meets the requirements per the above link!
    Be sure that your video is visible to your instructors!
 
+    https://watch.screencastify.com/v/2TFl3rnqLspjUmX1uaFI
+
    What is the URL of your video?
      [PUT YOUR ANSWER HERE, using as many lines as you need.]
 
@@ -13,14 +15,35 @@ TODO: Complete the following after you have COMPLETED your project.
      [PUT YOUR ANSWER HERE, using as many lines as you need.]
 
 3. Explain briefly what your project does and how it works.
+
     Once the game is run, a start menu appears and the player will press space to start. Once the game starts,
     a tetris grid will appear and the game of tetris begins. Pressing "w" or up will rotate the block, pressing
     "a" or left will move the block left, pressing "d" or right will move the block right, and pressing "s" will
-    quick drop the block. Once the
+    quick drop the block. Once the tetris game is lost, the breakout game begins. If the breakout game is won, it
+    continues to round 2 of tetris and repeats. If the breakout game is lost, the game restarts and saves your high
+    score.
+
      [PUT YOUR ANSWER HERE, using as many lines as you need.]
 
 4. List the names of the classes in your project,
    identifying who was the primary author(s) for each.
+   Maddie Fletcher:
+        Ball.py
+
+   Matthew Martinez:
+        Tile.py
+        Tetromino.py
+        tetrisgrid.py
+        testrandom.py
+        filesystem.py
+
+   Luca Acquasaliente
+        Start.py
+        Scoreboard.py
+
+   All:
+        Powerup.py
+        Game.py
 
      [PUT YOUR ANSWER HERE, using as many lines as you need.]
 
@@ -28,10 +51,20 @@ TODO: Complete the following after you have COMPLETED your project.
    Project Description, identifying who was the primary author(s) for each.
    (For features that you did not implement, if any, indicate so.)
 
+   Falling Bricks, Increasing score as lines are broken, Stacking bricks, Rotation, Fast drop, Increasing drop speed,
+   Once lost, move to breakout, Ball & paddle collision, Ball & block collision, Increase score per block,
+   Lose game if ball hits left side, and Current score count
+
+   All essential are included
+
      [PUT YOUR ANSWER HERE, using as many lines as you need.]
 
 6. List the additional features of your game that you implemented,
    identifying who was the primary author(s) for each.
+
+   Sound effects for drop, Sound effects for line clear, Sound effects for hits, and High score
+
+   All anticipated features are included
 
      [PUT YOUR ANSWER HERE, using as many lines as you need.]
 
@@ -40,15 +73,22 @@ TODO: Complete the following after you have COMPLETED your project.
      -- But do NOT include here the modules that you listed in #3 above,
           since they are INTERNAL to your project.
 
+     No external libraries used.
+
      [PUT YOUR ANSWER HERE, using as many lines as you need.]
 
 8. List all media items (images, music, other graphics, etc)
    that are not your own, and their sources (e.g. URLs).
    [If you no longer know the source, indicate so.]
 
+   All sound effects were made by Matthew Martinez
+
      [PUT YOUR ANSWER HERE, using as many lines as you need.]
 
 9. [Optional] Add anything here that would help us assess your
    project fairly, beyond what you already said/showed in your video.
+
+   Making 2 games in one was exceptionally more difficult than expected, so perfecting both games wasn't
+   really an option.
 
      [PUT YOUR ANSWER HERE, using as many lines as you need.]
