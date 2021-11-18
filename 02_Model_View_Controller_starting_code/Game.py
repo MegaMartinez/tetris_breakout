@@ -54,6 +54,7 @@ class Game:
         self.ball = None
         self.paddle = None
         self.movegrid = False
+        self.powerup = None
 
 
         self.scoreboard = Scoreboard(self.screen)
@@ -194,7 +195,7 @@ class Game:
                         self.paddle.top_hitbox.y += 3
                         self.paddle.bottom_hitbox.y += 3
 
-                self.tetrisgrid.checkhit(self.ball.x, self.ball.y, self.ball)
+                self.tetrisgrid.checkhit(self.ball.x, self.ball.y, self.ball, self)
 
                 self.score2 = self.ball.update_score()
                 self.scoreboard.score = self.score + self.score2

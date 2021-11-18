@@ -2,6 +2,8 @@
 
 import pygame
 from filesystem import file
+from Powerup import powerup
+import random
 
 blank = pygame.image.load(file("empty/blank.png"))
 empty1 = pygame.image.load(file("empty/empty_1.png"))
@@ -73,7 +75,7 @@ class tile:
         if self.state == 2:
             self.hitbox = pygame.Rect(self.posx, self.posy, self.img.get_width(), self.img.get_height())
 
-    def checkhit(self, x, y, ball):
+    def checkhit(self, x, y, ball, game):
         if self.hitbox != None:
             if self.hitbox.collidepoint(x, y):
                 self.empty_basic()
@@ -85,15 +87,20 @@ class tile:
                     ball.bonk_block_top()
                     self.hitbox = None
                 if self.color == "blue":
-                    pass
+                    if game.powerup == None and random.randrange(1, 10) == 1:
+                        game.powerup = powerup(self.color, self.posx, self.posy)
                 if self.color == "yellow":
-                    pass
+                    if game.powerup == None and random.randrange(1, 10) == 1:
+                        game.powerup = powerup(self.color, self.posx, self.posy)
                 if self.color == "orange":
-                    pass
+                    if game.powerup == None and random.randrange(1, 10) == 1:
+                        game.powerup = powerup(self.color, self.posx, self.posy)
                 if self.color == "purple":
-                    pass
+                    if game.powerup == None and random.randrange(1, 10) == 1:
+                        game.powerup = powerup(self.color, self.posx, self.posy)
                 if self.color == "green":
-                    pass
+                    if game.powerup == None and random.randrange(1, 10) == 1:
+                        game.powerup = powerup(self.color, self.posx, self.posy)
 
 
 
