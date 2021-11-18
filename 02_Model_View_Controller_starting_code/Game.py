@@ -208,7 +208,7 @@ class Game:
                 self.framecount += 1
             else:       # begins ball movement
                 self.tetrisgrid.updatehitbox()
-                self.ball.move(0.5 - .5)
+                self.ball.move()
                 if self.powerup != None:        # moves the powerup
                     self.powerup.move()
                     if self.powerup.x < 0:
