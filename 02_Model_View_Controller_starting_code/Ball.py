@@ -4,33 +4,6 @@ import pygame
 from tetrisgrid import tetrisgrid
 from filesystem import file
 
-class Block():
-    def __init__(self, screen, x, y):
-        self.screen = screen
-        self.x = x
-        self.y = y
-        self.health = 1
-        self.is_dead = False
-
-class Wall():
-    def __init__(self, screen): #Trying to get the Tetris blocks onto the breakout game
-        self.screen = screen
-        self.blocks = []
-        for j in range(len(tetrisgrid.get_filled())):
-            for k in range(8):
-                self.blocks.append(tetrisgrid.get_filled())
-
-    def is_defeated(self):
-        return len(self.blocks)
-
-    def draw(self):
-        for block in self.blocks:
-            block.draw()
-
-    def remove_dead_blocks(self):
-        for k in range(len(self.blocks) - 1, -1, -1):
-            if self.blocks[k].is_dead:
-                del self.blocks[k]
 
 class Ball():
     def __init__(self, screen, start_x, start_y, speed_x, speed_y):
@@ -39,7 +12,7 @@ class Ball():
         self.y = start_y
         self.speed_x = speed_x
         self.speed_y = speed_y
-        self.radius = 4
+        self.radius = 1
         self.color = (255, 255, 255)
         self.score = 0
 
@@ -54,7 +27,7 @@ class Ball():
             self.speed_y = - self.speed_y
         if self.x + self.radius > 180:
             self.speed_x = - self.speed_x
-        if self.x - self.radius < 6:
+        if self.x - self.radius < 8:
             raise Exception("GAME OVER")
 
     # def give_x(self):
