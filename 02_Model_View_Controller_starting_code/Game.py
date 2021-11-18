@@ -3,10 +3,12 @@ from tetrisgrid import tetrisgrid
 # from tile import tile
 from Tetromino import Tetromino
 from Scoreboard import Scoreboard
+from Start import Start
 import random
 import Ball
 from Powerup import powerup
 from filesystem import file
+import math
 
 # Put each class in its own module, using the same name for both.
 # Then use statements like the following, but for YOUR classes in YOUR modules:
@@ -19,6 +21,8 @@ from filesystem import file
 
 class Game:
     def __init__(self, screen: pygame.Surface):
+
+
         self.screen = screen
         self.tetrisgrid = tetrisgrid()
         self.framecount = 0
@@ -28,6 +32,7 @@ class Game:
         self.framecountP = 0
         self.round = 0
 
+        self.start = Start(self.screen)
 
 
         """
@@ -60,6 +65,7 @@ class Game:
         self.lastpickedshape = None
         self.moveback = False
         self.nextround = False
+        self.highest = - math.inf
         self.speedupframecount = 0
 
 
@@ -69,6 +75,9 @@ class Game:
         self.movegrid = False
         self.powerup = None
         self.paddle_speed = 3
+        self.high_score = [0, 0, 0]
+        self.highest_score = self.high_score
+        self.ballroundspeed = 0.2
         self.ballroundspeed = 1.6
 
 
@@ -102,7 +111,11 @@ class Game:
         
         self.screen.blit(pygame.image.load(file("placeholderblack.png")), (0, 0))
 
-        self.scoreboard.draw()
+        if self.gamestate != 0:
+            self.scoreboard.draw()
+
+        if self.gamestate == 0:
+            self.start.draw(self.highest_score[-1], self.highest_score[-2], self.highest_score[-3])
 
 
 
@@ -115,6 +128,9 @@ class Game:
         """ All objects that do something at each cycle: ask them to do it. """
         # Use something like the following, but for the objects in YOUR game:
 
+        if self.gamestate == 0:
+            self.high_score += [self.score]
+            self.highest_score.sort()
         if self.gamestate == 1:
 
             if True not in [self.emptyanimation, self.tetrisinaction, self.stoptetromino, self.moveback] or self.nextround:
@@ -194,7 +210,7 @@ class Game:
                     if self.tetromino != None:
                         self.tetromino.movehorizontal(self.tetrominomovedir, self.tetrisgrid.get_filled())
                     self.tetrominomoving = False
-                
+
                 if self.speedupframecount == 900 and self.levelspeed != 3 and self.currentspeed != 3:
                     self.currentspeed -= 1
                     self.speed = self.currentspeed
@@ -297,6 +313,8 @@ class Game:
                 self.scoreboard.score = self.score
 
                 if self.willose:
+                    
+                    self.high_score.append(self.score)
                     self.lose_breakout2()
 
                 if self.tetrisgrid.get_filled() == [] and not self.willose:
@@ -307,6 +325,7 @@ class Game:
                     self.activepowerups = []
                     self.moveback = True
                     self.gamestate = 1
+
 
                 self.willose = False
         #     self.enemies.move()

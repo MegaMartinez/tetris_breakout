@@ -35,7 +35,6 @@ class Ball:
         if self.x - self.radius < 6:
             Game.Game.lose_breakout(self.game)
             return
-        print(self.speed_y)
         if abs(self.speed_y) < 0.2:
             self.speed_y += 0.1
             self.speed_y *= 2.5
