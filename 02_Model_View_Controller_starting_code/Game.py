@@ -59,6 +59,7 @@ class Game:
         self.movegrid = False
         self.powerup = None
         self.paddlelong = False
+        self.paddle_speed = 3
 
 
         self.scoreboard = Scoreboard(self.screen)
@@ -210,15 +211,15 @@ class Game:
                 pressed_keys = pygame.key.get_pressed()
                 if pressed_keys[pygame.K_UP]:
                     if self.paddle.y > self.paddle.height + self.paddle.height:
-                        self.paddle.y -= 3
-                        self.paddle.top_hitbox.y -= 3
-                        self.paddle.bottom_hitbox.y -= 3
+                        self.paddle.y -= self.paddle_speed
+                        self.paddle.top_hitbox.y -= self.paddle_speed
+                        self.paddle.bottom_hitbox.y -= self.paddle_speed
 
                 if pressed_keys[pygame.K_DOWN]:
                     if self.paddle.y < self.screen.get_height() - self.paddle.height:
-                        self.paddle.y += 3
-                        self.paddle.top_hitbox.y += 3
-                        self.paddle.bottom_hitbox.y += 3
+                        self.paddle.y += self.paddle_speed
+                        self.paddle.top_hitbox.y += self.paddle_speed
+                        self.paddle.bottom_hitbox.y += self.paddle_speed
 
                 self.tetrisgrid.checkhit(self.ball.x, self.ball.y, self.ball, self)
 
@@ -245,10 +246,13 @@ class Game:
         self.tetrisinaction = True
     
     def debugspawnbreakout(self):
-        self.ball = Ball.Ball(self.screen, 16, 50, 2, 1)
+        self.ball = Ball.Ball(self.screen, 16, 50, 1, .5)
         # self.paddle_top = Ball.Paddle(self.screen, 192, 72, 32, 4)
         # self.paddle_bottom = Ball.Paddle(self.screen, 192, 96, 32, 4)
         self.paddle = Ball.Paddle(self.screen, 92)
 
+    def change_paddle_speed(self):
+        self.paddle_speed = 6
+
     def spawnpowerup(self, color, x, y):
-        self.powerup = powerup("yellow", x, y)
+        self.powerup = powerup("orange", x, y)

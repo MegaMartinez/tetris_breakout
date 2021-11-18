@@ -14,4 +14,4 @@ class Scoreboard():
         score = self.font.render(score_letter, True, (255, 255, 255))
         self.screen.blit(score_image, (100, 12))
         self.screen.blit(score, (100, 0))
-        pygame.draw.line(self.screen, (100, 100, 100), (0, 23), (150, 23))
+        pygame.draw.line(self.screen, (100, 100, 100), (0, 23), (184, 23))

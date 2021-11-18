@@ -1,7 +1,7 @@
 import random
 
 import pygame
-from tetrisgrid import tetrisgrid
+# from tetrisgrid import tetrisgrid
 from filesystem import file
 
 
@@ -15,6 +15,8 @@ class Ball():
         self.radius = 4
         self.color = (255, 255, 255)
         self.score = 0
+        self.score_incr = 10
+        self.k = 1
 
     def draw(self, screen):
         pygame.draw.circle(screen, self.color, (self.x, self.y), self.radius)
@@ -47,7 +49,6 @@ class Ball():
             self.speed_y = abs(self.speed_y) + ran
         else:
             self.speed_y = abs(self.speed_y) + ran
-        self.score += 5
 
     def bonk_bottom(self):
         ran = random.uniform(-0.2, 0.2)
@@ -64,15 +65,23 @@ class Ball():
 
     def bonk_block_side(self):
         self.speed_x = -self.speed_x
-        self.score += 20
+        self.score += self.score_incr
 
     def bonk_block_top(self):
         self.speed_y = -self.speed_y
-        self.score += 20
+        self.score += self.score_incr
 
     # def bomb(self):
     #     if power_bomb == True:
     #         self.color = (150, 100, 80)
+
+    def change_speed(self):
+        self.speed_y = self.speed_y * 0.5
+        self.speed_x = self.speed_x * 0.5
+
+    def change_score_incr(self):
+        self.score_incr = self.score_incr * 2
+
     def update_score(self):
         return self.score
 

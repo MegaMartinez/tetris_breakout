@@ -1,4 +1,5 @@
 import pygame
+from Ball import Ball
 import time
 
 class powerup:
@@ -24,11 +25,11 @@ class powerup:
         if self.type == 0:
             pass
         if self.type == 1:
-            pass
+            game.ball.change_score_incr()
         if self.type == 2:
-            pass
+            game.change_paddle_speed()
         if self.type == 3:
-            pass
+            game.ball.change_speed()
         if self.type == 4:
             game.paddle.long_paddle()
             game.paddlelong = True

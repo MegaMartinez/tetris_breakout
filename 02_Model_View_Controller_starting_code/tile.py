@@ -2,6 +2,7 @@
 
 import pygame
 from filesystem import file
+from Powerup import powerup
 import random
 
 blank = pygame.image.load(file("empty/blank.png"))
@@ -87,6 +88,22 @@ class tile:
                 else:
                     ball.bonk_block_top()
                     self.hitbox = None
+
+                # if self.color == "blue":
+                #     if game.powerup == None and random.randrange(1, 10) == 1:
+                #         game.powerup = powerup(self.color, self.posx, self.posy)
+                # if self.color == "yellow":
+                #     if game.powerup == None and random.randrange(1, 10) == 1:
+                #         game.powerup = powerup(self.color, self.posx, self.posy)
+                # if self.color == "orange":
+                #     if game.powerup == None and random.randrange(1, 10) == 1:
+                #         game.powerup = powerup(self.color, self.posx, self.posy)
+                # if self.color == "purple":
+                #     if game.powerup == None and random.randrange(1, 10) == 1:
+                #         game.powerup = powerup(self.color, self.posx, self.posy)
+                # if self.color == "green":
+                #     if game.powerup == None and random.randrange(1, 10) == 1:
+                #         game.powerup = powerup(self.color, self.posx, self.posy)
 
 
 
