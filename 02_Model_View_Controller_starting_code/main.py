@@ -9,13 +9,13 @@ from View import View
 
 def main():
     pygame.init()
-    screen = pygame.display.set_mode((184, 184), SCALED)  # TODO: Choose your own size
+    screen = pygame.display.set_mode((184, 184), SCALED)
     clock = pygame.time.Clock()
     game = Game(screen)  # the Model
     viewer = View(screen, game)  # the View
     controller = Controller(game)  # the Controller
 
-    frame_rate = 60  # TODO: Choose your own frame rate
+    frame_rate = 60
 
 
     while True:

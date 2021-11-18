@@ -32,6 +32,12 @@ class Ball:
             self.speed_x = - self.speed_x
         if self.x - self.radius < 6:
             raise Exception("GAME OVER")
+        print(self.speed_y)
+        if abs(self.speed_y) < 0.2:
+            self.speed_y += 0.1
+            self.speed_y *= 2.5
+        if abs(self.speed_y) > 1.1:
+            self.speed_y /= 2
 
     # def give_x(self):
     #     return self.x
@@ -45,10 +51,10 @@ class Ball:
         self.speed_x = -self.speed_x
         if abs(self.speed_y) < .5:
             ran = .2
-            self.speed_y = abs(self.speed_y) + ran
+            self.speed_y = abs(self.speed_y + ran)
         elif abs(self.speed_y) > 1.5:
             ran = -.2
-            self.speed_y = abs(self.speed_y) + ran
+            self.speed_y = abs(self.speed_y + ran)
         else:
             self.speed_y = abs(self.speed_y) + ran
 
