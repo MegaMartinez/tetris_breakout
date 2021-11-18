@@ -23,7 +23,7 @@ class Ball:
         pygame.draw.circle(screen, self.color, (self.x, self.y), self.radius)
         # Parameters (screen, color, start position, radius)
 
-    def move(self):     # Moves the ball, loses if the ball passes paddle, bounces of the sides.
+    def move(self, round):     # Moves the ball, loses if the ball passes paddle, bounces of the sides.
         self.y += self.speed_y
         self.x += self.speed_x
         if self.y + self.radius > 184 or self.y - self.radius < 23:
@@ -36,7 +36,7 @@ class Ball:
         if abs(self.speed_y) < 0.2:
             self.speed_y += 0.1
             self.speed_y *= 2.5
-        if abs(self.speed_y) > 1.1:
+        if abs(self.speed_y) > 1.1 + round:
             self.speed_y /= 2
 
     # def give_x(self):

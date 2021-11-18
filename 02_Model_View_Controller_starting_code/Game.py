@@ -205,7 +205,7 @@ class Game:
                 self.framecount += 1
             else:       # begins ball movement
                 self.tetrisgrid.updatehitbox()
-                self.ball.move()
+                self.ball.move(0.5 - .5)
                 if self.powerup != None:        # moves the powerup
                     self.powerup.move()
                     if self.powerup.x < 0:
@@ -298,7 +298,7 @@ class Game:
         self.tetrisinaction = True
     
     def debugspawnbreakout(self):
-        self.ball = Ball.Ball(self.screen, 16, 50, 1, .5)
+        self.ball = Ball.Ball(self.screen, 16, 50, 5, 0.5)
         # self.paddle_top = Ball.Paddle(self.screen, 192, 72, 32, 4)
         # self.paddle_bottom = Ball.Paddle(self.screen, 192, 96, 32, 4)
         self.paddle = Ball.Paddle(self.screen, 92)
