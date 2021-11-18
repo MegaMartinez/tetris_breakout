@@ -37,12 +37,19 @@ class tile:
         self.color : str = None
         self.posx = (8 * posx)
         self.posy = (8 * posy)
+        self.initialposx = self.posx
+        self.initialposy = self.posy
         self.stophere = False
         self.hitbox = None
 
     def blank(self):
         self.state = 0
         self.color : str = None
+        self.img = blank
+        self.posx = self.initialposx
+        self.posy = self.initialposy
+        self.__init__(self.initialposx, self.initialposy)
+
 
     def empty_basic(self):
         self.state = 1

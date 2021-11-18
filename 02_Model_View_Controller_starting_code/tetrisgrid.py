@@ -129,6 +129,10 @@ class tetrisgrid:
                     if self.row[(tiley + ky) - 1][(tilex + kx) - 1].state == 2 and [ky, kx] != [1, 1]:
                         self.row[(tiley + ky) - 1][(tilex + kx) - 1].empty_basic()
                         self.row[(tiley + ky) - 1][(tilex + kx) - 1].hitbox = None
-        
+
+    def erase(self):
+        for ky in range(20):
+            for kx in range(10):
+                self.row[ky][kx].blank()
 
 

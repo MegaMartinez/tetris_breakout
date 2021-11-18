@@ -3,11 +3,12 @@ import random
 import pygame
 # from tetrisgrid import tetrisgrid
 from filesystem import file
+import Game
 # Code by Maddie Fletcher
 
 
 class Ball:
-    def __init__(self, screen, start_x, start_y, speed_x, speed_y):
+    def __init__(self, screen, start_x, start_y, speed_x, speed_y, game):
         self.screen = screen
         self.x = start_x
         self.y = start_y
@@ -18,6 +19,7 @@ class Ball:
         self.score = 0
         self.score_incr = 10
         self.k = 1
+        self.game = game
 
     def draw(self, screen):     # Draws the ball on the screen
         pygame.draw.circle(screen, self.color, (self.x, self.y), self.radius)
@@ -31,7 +33,8 @@ class Ball:
         if self.x + self.radius > 180:
             self.speed_x = - self.speed_x
         if self.x - self.radius < 6:
-            raise Exception("GAME OVER")
+            Game.Game.lose_breakout(self.game)
+            return
         print(self.speed_y)
         if abs(self.speed_y) < 0.2:
             self.speed_y += 0.1

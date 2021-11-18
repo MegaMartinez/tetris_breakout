@@ -9,11 +9,14 @@ TODO: Complete the following after you have COMPLETED your project.
      [PUT YOUR ANSWER HERE, using as many lines as you need.]
 
 2. List the names of the team members for your project.
-
+    Maddie Fletcher, Luca Acquasaliente, Matthew Martinez
      [PUT YOUR ANSWER HERE, using as many lines as you need.]
 
 3. Explain briefly what your project does and how it works.
-
+    Once the game is run, a start menu appears and the player will press space to start. Once the game starts,
+    a tetris grid will appear and the game of tetris begins. Pressing "w" or up will rotate the block, pressing
+    "a" or left will move the block left, pressing "d" or right will move the block right, and pressing "s" will
+    quick drop the block. Once the
      [PUT YOUR ANSWER HERE, using as many lines as you need.]
 
 4. List the names of the classes in your project,

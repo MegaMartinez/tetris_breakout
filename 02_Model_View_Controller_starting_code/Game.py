@@ -75,6 +75,8 @@ class Game:
         self.scoreboard = Scoreboard(self.screen)
         self.score = 0
 
+        self.willose = False
+
         self.activepowerups = []
 
         # Store whatever YOUR game needs, perhaps something like this:
@@ -294,7 +296,10 @@ class Game:
                 self.score += self.ball.update_score()
                 self.scoreboard.score = self.score
 
-                if self.tetrisgrid.get_filled() == []:
+                if self.willose:
+                    self.lose_breakout2()
+
+                if self.tetrisgrid.get_filled() == [] and not self.willose:
                     self.paddle_speed = 3
                     self.ball = None
                     self.paddle = None
@@ -302,6 +307,8 @@ class Game:
                     self.activepowerups = []
                     self.moveback = True
                     self.gamestate = 1
+
+                # self.willose = False
         #     self.enemies.move()
         #     self.missiles.handle_explosions(self.enemies)
 
@@ -314,7 +321,7 @@ class Game:
         self.tetrisinaction = True
     
     def debugspawnbreakout(self):
-        self.ball = Ball.Ball(self.screen, 16, 50, self.ballroundspeed, 0.5)
+        self.ball = Ball.Ball(self.screen, 16, 50, self.ballroundspeed, 0.5, self)
         # self.paddle_top = Ball.Paddle(self.screen, 192, 72, 32, 4)
         # self.paddle_bottom = Ball.Paddle(self.screen, 192, 96, 32, 4)
         self.paddle = Ball.Paddle(self.screen, 92)
@@ -334,3 +341,50 @@ class Game:
             for kx in range(10):
                 self.tetrisgrid.row[ky][kx].empty_basic()
                 self.tetrisgrid.row[ky][kx].hitbox = None
+
+    def lose_breakout(self):
+        self.willose = True
+
+    def lose_breakout2(self):
+        self.tetrisgrid.erase()
+        self.framecount = 0
+        self.framecountY = 0
+        self.framecountO = 0
+        self.framecountG = 0
+        self.framecountP = 0
+        self.round = 0
+
+        self.gamestate = 0
+        # ------------------ #
+        # TETRIS VARIABLES   #
+        # ------------------ #
+        self.emptyanimation = False
+        self.tetrisinaction = False
+        self.tetromino = None
+        self.stoptetromino = False
+        self.clearanim = False
+        self.tetrominomoving = False
+        self.speedchange = False
+        self.tetrominorotating = False
+        self.tetrominomovedir = 0
+        self.speed = 15
+        self.newspeed = 0
+        self.tetrisstage = 0
+        self.currentspeed = 15
+        self.levelspeed = 15
+        self.lastpickedshape = None
+        self.moveback = False
+        self.nextround = False
+        self.speedupframecount = 0
+
+        self.ball = None
+        self.paddle = None
+        self.movegrid = False
+        self.powerup = None
+        self.paddle_speed = 3
+        self.ballroundspeed = 1.6
+
+        self.scoreboard = Scoreboard(self.screen)
+        self.score = 0
+
+        self.activepowerups = []
