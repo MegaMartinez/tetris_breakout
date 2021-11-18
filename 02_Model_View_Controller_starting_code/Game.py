@@ -69,7 +69,7 @@ class Game:
         self.movegrid = False
         self.powerup = None
         self.paddle_speed = 3
-        self.ballroundspeed = 0.2
+        self.ballroundspeed = 1.6
 
 
         self.scoreboard = Scoreboard(self.screen)
