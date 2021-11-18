@@ -12,3 +12,15 @@ class powerup:
         self.type = ["blue", "green", "orange", "purple", "yellow"].index(color)
         self.x = posx
         self.y = posy
+    
+    def activate(self):
+        if self.type == 0:
+            pass
+        if self.type == 1:
+            pass
+        if self.type == 2:
+            pass
+        if self.type == 3:
+            pass
+        if self.type == 4:
+            pass
