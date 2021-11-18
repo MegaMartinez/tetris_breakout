@@ -21,28 +21,10 @@ class Controller:
         if pressed_keys[pygame.K_ESCAPE]:
             raise Exception("PROGRAM QUIT VOLUNTARILY")
         
-        # These keys are purely for debug. TODO: REMEMBER TO DELETE THEM LATER
-        if pressed_keys[pygame.K_1]:
-            if self.runonce == 0:
+        if pressed_keys[pygame.K_SPACE]:
+            if self.game.gamestate == 0:
                 self.game.emptyanimation = True
                 self.game.gamestate = 1
-            self.runonce = 1
-        
-        if pressed_keys[pygame.K_2]:
-            if self.runonce == 0:
-                self.game.debugwinbreakout()
-            self.runonce = 1
-
-        if pressed_keys[pygame.K_RSHIFT]:
-            self.runonce = 0
-
-        if pressed_keys[pygame.K_LSHIFT]:
-            if self.runonce == 0:
-                self.game.tetrisgrid.checkrow()
-            self.runonce = 1
-
-
-        # ACTUAL KEYS
 
         if self.key_was_pressed_on_this_cycle(pygame.K_s, events) or self.key_was_pressed_on_this_cycle(pygame.K_DOWN, events):
             self.game.speedchange = True
