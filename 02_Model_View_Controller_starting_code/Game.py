@@ -124,6 +124,9 @@ class Game:
                     self.moveback = False
                     self.framecount = -1
                     self.nextround = True
+                    if self.speed != 3:
+                        self.speed -= 2
+                        self.levelspeed -= 2
                 self.framecount += 1
             else:
                 if self.emptyanimation:
