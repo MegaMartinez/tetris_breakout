@@ -64,15 +64,22 @@ class Ball():
     #     return self.y
 
     def bonk_top(self):
-        ran = random.uniform(-0.5, 0.5)
-        self.speed_x = -self.speed_x + .05
-        self.speed_y = abs(self.speed_y)
+        ran = random.uniform(-0.2, 0.2)
+        self.speed_x = -self.speed_x
+        if self.speed_y < .5:
+            ran = .2
+            self.speed_y = abs(self.speed_y) + ran
+        elif self.speed_y > 1.5:
+            ran = -.2
+            self.speed_y = abs(self.speed_y) + ran
+        else:
+            self.speed_y = abs(self.speed_y) + ran
         self.score += 5
 
     def bonk_bottom(self):
-        ran = random.uniform(-0.5, 0.5)
-        self.speed_x = -self.speed_x + .05
-        self.speed_y = -abs(self.speed_y)
+        ran = random.uniform(-0.2, 0.2)
+        self.speed_x = -self.speed_x
+        self.speed_y = -abs(self.speed_y) + ran
         self.score += 5
 
     def bonk_block_side(self):
