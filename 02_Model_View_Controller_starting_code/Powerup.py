@@ -23,7 +23,7 @@ class powerup:
 
     def activate(self, game):
         if self.type == 0:
-            pass
+            game.activepowerups += ["blue"]
         if self.type == 1:
             game.ball.change_score_incr()
             game.activepowerups += ["green"]

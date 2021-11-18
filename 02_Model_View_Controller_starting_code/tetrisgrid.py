@@ -109,7 +109,15 @@ class tetrisgrid:
         for ky in range(20):
             for kx in range(10):
                 self.row[ky][kx].posx += 1
-                        
+    
+    def blowup(self, ball):
+        tilex = (int(ball.x) // 8) - 12
+        tiley = (int(ball.y) // 8) - 3
+        for ky in range(3):
+            for kx in range(3):
+                if tiley + ky >= 0 and tilex + kx >= 0 and tiley + ky <= 19 and tilex + kx <= 9:
+                    if self.row[tiley + ky][tilex + kx].state == 2:
+                        self.row[tiley + ky][tilex + kx].empty_basic()
         
 
 

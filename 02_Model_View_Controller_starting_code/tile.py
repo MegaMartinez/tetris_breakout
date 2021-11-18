@@ -81,6 +81,8 @@ class tile:
                 if random.randrange(1, 10) == 1 and game.powerup == None and self.color not in game.activepowerups:
                     game.spawnpowerup(self.color, self.posx, self.posy)
                 self.empty_basic()
+                if "blue" in game.activepowerups:
+                    game.blowup()
                 if x <= self.hitbox.x + 1 or x >= self.hitbox.x + self.img.get_width() - 1:
                     ball.bonk_block_side()
                     self.hitbox = None

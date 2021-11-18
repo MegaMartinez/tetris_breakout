@@ -182,7 +182,7 @@ class Game:
             if self.movegrid:
                 if self.framecount % 4 == 0:
                     self.tetrisgrid.moveeverything()
-                if self.framecount == 144:
+                if self.framecount == 128:
                     self.movegrid = False
                     self.framecount = -1
                     self.debugspawnbreakout()
@@ -283,3 +283,7 @@ class Game:
 
     def spawnpowerup(self, color, x, y):
         self.powerup = powerup(color, x, y)
+
+    def blowup(self):
+        self.tetrisgrid.blowup(self.ball)
+        self.activepowerups.remove("blue")

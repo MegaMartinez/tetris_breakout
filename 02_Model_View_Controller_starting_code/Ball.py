@@ -12,7 +12,7 @@ class Ball():
         self.y = start_y
         self.speed_x = speed_x
         self.speed_y = speed_y
-        self.radius = 4
+        self.radius = 3
         self.color = (255, 255, 255)
         self.score = 0
         self.score_incr = 10
