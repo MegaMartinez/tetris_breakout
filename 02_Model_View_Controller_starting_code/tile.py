@@ -84,6 +84,17 @@ class tile:
                 else:
                     ball.bonk_block_top()
                     self.hitbox = None
+                if self.color == "blue":
+                    pass
+                if self.color == "yellow":
+                    pass
+                if self.color == "orange":
+                    pass
+                if self.color == "purple":
+                    pass
+                if self.color == "green":
+                    pass
+
 
 
     
