@@ -1,6 +1,6 @@
 import pygame
 from tetrisgrid import tetrisgrid
-from tile import tile
+# from tile import tile
 from Tetromino import Tetromino
 from Scoreboard import Scoreboard
 import random
@@ -14,7 +14,7 @@ from filesystem import file
 #     from Missiles import Missiles
 #     from Enemies import Enemies
 
-# TODO: Put your names here (entire team)
+# Maddie Fletcher, Luca Acquasaliente, Matthew Martinez
 
 
 class Game:
@@ -38,9 +38,9 @@ class Game:
 
         self.gamestate = 0
 
-        #------------------#
-        # TETRIS VARIABLES #
-        #------------------#
+        # ------------------ #
+        # TETRIS VARIABLES   #
+        # ------------------ #
         self.screen = screen
         self.emptyanimation = False
         self.tetrisinaction = False
@@ -178,8 +178,8 @@ class Game:
             self.scoreboard.score = self.score
 
         # Starting Breakout 22222222222222222222222222222222222222222222222222
-        if self.gamestate == 2:
-            if self.movegrid:
+        if self.gamestate == 2:     # starts the breakout game
+            if self.movegrid:       # Moves the tetris grid for breakout
                 if self.framecount % 4 == 0:
                     self.tetrisgrid.moveeverything()
                 if self.framecount == 144:
@@ -187,20 +187,21 @@ class Game:
                     self.framecount = -1
                     self.debugspawnbreakout()
                 self.framecount += 1
-            else:
+            else:       # begins ball movement
                 self.tetrisgrid.updatehitbox()
                 self.ball.move()
-                if self.powerup != None:
+                if self.powerup != None:        # moves the powerup
                     self.powerup.move()
                     if self.powerup.x < 0:
                         self.powerup = None
 
-                if self.paddle.give_top().collidepoint(self.ball.x, self.ball.y):
+                if self.paddle.give_top().collidepoint(self.ball.x, self.ball.y):       # collides top paddle
                     self.ball.bonk_top()
 
-                if self.paddle.give_bottom().collidepoint(self.ball.x, self.ball.y):
+                if self.paddle.give_bottom().collidepoint(self.ball.x, self.ball.y):    # collides bottom paddle
                     self.ball.bonk_bottom()
-                if self.powerup != None:
+
+                if self.powerup != None:        # detects collision between powerup and paddle
                     if self.paddle.give_top().collidepoint(self.powerup.x, self.powerup.y) or self.paddle.give_bottom().collidepoint(self.powerup.x, self.powerup.y):
                         self.powerup.activate(self)
                         self.powerup = None
@@ -215,7 +216,7 @@ class Game:
 
 
                 pressed_keys = pygame.key.get_pressed()
-                if pressed_keys[pygame.K_UP]:
+                if pressed_keys[pygame.K_UP]:       # moves paddle
                     if self.paddle.y > self.paddle.height + self.paddle.height:
                         self.paddle.y -= self.paddle_speed
                         self.paddle.top_hitbox.y -= self.paddle_speed
@@ -235,21 +236,21 @@ class Game:
                         self.framecountY = -1
                         self.activepowerups.remove("yellow")
                     self.framecountY += 1
-                
+
                 if "green" in self.activepowerups:
                     if self.framecountG == 600:
                         self.ball.change_score_decr()
                         self.framecountG = -1
                         self.activepowerups.remove("green")
                     self.framecountG += 1
-                
+
                 if "orange" in self.activepowerups:
                     if self.framecountO == 420:
                         self.change_paddle_speed(2)
                         self.framecountO = -1
                         self.activepowerups.remove("orange")
                     self.framecountO += 1
-                
+
                 if "purple" in self.activepowerups:
                     if self.framecountO == 900:
                         self.ball.change_speed(False)
@@ -278,8 +279,8 @@ class Game:
         # self.paddle_bottom = Ball.Paddle(self.screen, 192, 96, 32, 4)
         self.paddle = Ball.Paddle(self.screen, 92)
 
-    def change_paddle_speed(self, newspeed):
+    def change_paddle_speed(self, newspeed):    # change paddle speed for powerup
         self.paddle_speed = newspeed
 
-    def spawnpowerup(self, color, x, y):
+    def spawnpowerup(self, color, x, y):        # spawns powerup
         self.powerup = powerup(color, x, y)

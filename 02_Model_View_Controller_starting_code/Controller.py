@@ -2,7 +2,7 @@ import pygame
 import sys
 from Game import Game
 
-# TODO: Put your names here (entire team)
+# Maddie Fletcher, Luca Acquasaliente, Matthew Martinez
 
 
 class Controller:

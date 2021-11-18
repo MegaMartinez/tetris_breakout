@@ -3,9 +3,10 @@ import random
 import pygame
 # from tetrisgrid import tetrisgrid
 from filesystem import file
+# Code by Maddie Fletcher
 
 
-class Ball():
+class Ball:
     def __init__(self, screen, start_x, start_y, speed_x, speed_y):
         self.screen = screen
         self.x = start_x
@@ -18,11 +19,11 @@ class Ball():
         self.score_incr = 10
         self.k = 1
 
-    def draw(self, screen):
+    def draw(self, screen):     # Draws the ball on the screen
         pygame.draw.circle(screen, self.color, (self.x, self.y), self.radius)
         # Parameters (screen, color, start position, radius)
 
-    def move(self):
+    def move(self):     # Moves the ball, loses if the ball passes paddle, bounces of the sides.
         self.y += self.speed_y
         self.x += self.speed_x
         if self.y + self.radius > 184 or self.y - self.radius < 23:
@@ -38,7 +39,7 @@ class Ball():
     # def give_y(self):
     #     return self.y
 
-    def bonk_top(self):
+    def bonk_top(self):     # reflecting ball off the top of the paddle
         ran = random.uniform(-0.2, 0.2)
         self.speed_x = -self.speed_x
         if abs(self.speed_y) < .5:
@@ -50,7 +51,7 @@ class Ball():
         else:
             self.speed_y = abs(self.speed_y) + ran
 
-    def bonk_bottom(self):
+    def bonk_bottom(self):      # reflecting ball of bottom of the paddle
         ran = random.uniform(-0.2, 0.2)
         self.speed_x = -self.speed_x
         if abs(self.speed_y) < .5:
@@ -61,21 +62,16 @@ class Ball():
             self.speed_y = -abs(self.speed_y) + ran
         else:
             self.speed_y = -abs(self.speed_y) + ran
-        # self.score += 5
 
-    def bonk_block_side(self):
+    def bonk_block_side(self):      # reflecting off the side of a block
         self.speed_x = -self.speed_x
         self.score += self.score_incr
 
-    def bonk_block_top(self):
+    def bonk_block_top(self):       # reflecting off the top or bottom of a block
         self.speed_y = -self.speed_y
         self.score += self.score_incr
 
-    # def bomb(self):
-    #     if power_bomb == True:
-    #         self.color = (150, 100, 80)
-
-    def change_speed(self, inc):
+    def change_speed(self, inc):    # changes speed for the slow ball powerup
         if inc:
             self.speed_y = self.speed_y * 0.5
             self.speed_x = self.speed_x * 0.5
@@ -83,9 +79,9 @@ class Ball():
             self.speed_y = self.speed_y * 2
             self.speed_x = self.speed_x * 2
 
-    def change_score_incr(self):
+    def change_score_incr(self):     # increases score for powerup
         self.score_incr = self.score_incr * 2
-    
+
     def change_score_decr(self):
         self.score_incr = self.score_incr // 2
 
@@ -105,7 +101,7 @@ class Paddle:
         self.top_hitbox = pygame.Rect(self.x, self.y, self.image.get_width(), self.image.get_height())
         self.bottom_hitbox = pygame.Rect(self.x, self.y - self.image.get_height(), self.image.get_width(), self.image.get_height())
 
-    def draw(self):
+    def draw(self):     # draws the paddle in 2 halves for hitbox detection
         self.screen.blit(self.image2, (self.x, self.y))
         self.screen.blit(self.image, (self.x, self.y - self.image.get_height()))
 
@@ -115,22 +111,14 @@ class Paddle:
     def give_bottom(self):
         return self.bottom_hitbox
 
-    def long_paddle(self):
+    def long_paddle(self):      # makes long paddle and updates hitbox for long paddle powerup
         self.image = pygame.image.load(file("test_paddle_long.png"))
         self.image2 = pygame.image.load(file("test_paddle_long2.png"))
         self.top_hitbox = pygame.Rect(self.x, self.y, self.image.get_width(), self.image.get_height())
         self.bottom_hitbox = pygame.Rect(self.x, self.y - self.image.get_height(), self.image.get_width(), self.image.get_height())
 
-
-    def short_paddle(self):
+    def short_paddle(self):     # returns the paddle to being small for paddle powerup
         self.image = pygame.image.load(file("test_paddle.png"))
         self.image2 = pygame.image.load(file("test_paddle2.png"))
         self.top_hitbox = pygame.Rect(self.x, self.y, self.image.get_width(), self.image.get_height())
         self.bottom_hitbox = pygame.Rect(self.x, self.y - self.image.get_height(), self.image.get_width(), self.image.get_height())
-
-
-
-    # def expand_paddle(self):
-    #     if power_long == True:
-    #         self.height = self.height * 2
-
