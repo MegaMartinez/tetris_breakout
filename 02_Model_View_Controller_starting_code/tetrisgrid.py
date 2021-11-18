@@ -131,8 +131,14 @@ class tetrisgrid:
                         self.row[(tiley + ky) - 1][(tilex + kx) - 1].hitbox = None
 
     def erase(self):
+        row = []
+        column = []
         for ky in range(20):
             for kx in range(10):
-                self.row[ky][kx].blank()
+                column += [tile(kx + 8, ky + 3)]
+            row += [column]
+            column = []
+        self.row = row
+        self.score = 0
 
 

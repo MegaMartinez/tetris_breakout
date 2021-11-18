@@ -308,7 +308,7 @@ class Game:
                     self.moveback = True
                     self.gamestate = 1
 
-                # self.willose = False
+                self.willose = False
         #     self.enemies.move()
         #     self.missiles.handle_explosions(self.enemies)
 
