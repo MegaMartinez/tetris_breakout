@@ -8,8 +8,6 @@ from filesystem import file
 class tetrisgrid:
     def __init__(self):
         """
-        FOR ANYONE WORKING WITH THIS GRID
-
         The list stores certain spots on the grid by rows and then columns of each row
         So to call a specific cell, you need to call it as:
         self.row[y][x]

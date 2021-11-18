@@ -1,3 +1,5 @@
+# Code by Luca
+
 import pygame
 from Scoreboard import Scoreboard
 import math

@@ -41,12 +41,6 @@ class Ball:
         if abs(self.speed_y) > 1.1:
             self.speed_y /= 2
 
-    # def give_x(self):
-    #     return self.x
-    #
-    # def give_y(self):
-    #     return self.y
-
     def bonk_top(self):     # reflecting ball off the top of the paddle
         playsound()
         ran = random.uniform(-0.2, 0.2)

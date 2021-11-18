@@ -93,26 +93,9 @@ class tile:
                 if x <= self.hitbox.x + 1 or x >= self.hitbox.x + self.img.get_width() - 1:
                     ball.bonk_block_side()
                     self.hitbox = None
-                # elif x >= self.hitbox.x or x <= self.hitbox.x + self.img.get_width():
                 else:
                     ball.bonk_block_top()
                     self.hitbox = None
-
-                # if self.color == "blue":
-                #     if game.powerup == None and random.randrange(1, 10) == 1:
-                #         game.powerup = powerup(self.color, self.posx, self.posy)
-                # if self.color == "yellow":
-                #     if game.powerup == None and random.randrange(1, 10) == 1:
-                #         game.powerup = powerup(self.color, self.posx, self.posy)
-                # if self.color == "orange":
-                #     if game.powerup == None and random.randrange(1, 10) == 1:
-                #         game.powerup = powerup(self.color, self.posx, self.posy)
-                # if self.color == "purple":
-                #     if game.powerup == None and random.randrange(1, 10) == 1:
-                #         game.powerup = powerup(self.color, self.posx, self.posy)
-                # if self.color == "green":
-                #     if game.powerup == None and random.randrange(1, 10) == 1:
-                #         game.powerup = powerup(self.color, self.posx, self.posy)
 
 
 

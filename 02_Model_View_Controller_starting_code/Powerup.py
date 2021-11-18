@@ -1,3 +1,5 @@
+# this code shared evenly between all three members of the group
+
 import pygame
 from Ball import Ball
 import time

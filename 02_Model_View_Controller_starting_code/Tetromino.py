@@ -102,7 +102,7 @@ class Tetromino:
             self.block4position[0] += dir
     
     def rotate(self, filled):
-        # oh boy here we go
+        # This does the rotation movements for every permutation of every possible shape
 
         if self.shape in ["S", "Z"]:
             if self.shape == "S":

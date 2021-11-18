@@ -5,6 +5,7 @@ from Controller import Controller
 from View import View
 
 # Maddie Fletcher, Luca Acquasaliente, Matthew Martinez
+# Sounds and pixel art by Matthew Martinez
 
 
 def main():

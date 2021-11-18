@@ -1,6 +1,5 @@
 import pygame
 from tetrisgrid import tetrisgrid
-# from tile import tile
 from Tetromino import Tetromino
 from Scoreboard import Scoreboard
 from Start import Start
@@ -9,12 +8,6 @@ import Ball
 from Powerup import powerup
 from filesystem import file
 import math
-
-# Put each class in its own module, using the same name for both.
-# Then use statements like the following, but for YOUR classes in YOUR modules:
-#     from Fighter import Fighter
-#     from Missiles import Missiles
-#     from Enemies import Enemies
 
 # Maddie Fletcher, Luca Acquasaliente, Matthew Martinez
 
@@ -88,16 +81,10 @@ class Game:
 
         self.activepowerups = []
 
-        # Store whatever YOUR game needs, perhaps something like this:
-        #     self.missiles = Missiles(self.screen)
-        #     self.fighter = Fighter(self.screen, self.missiles)
-        #     self.enemies = Enemies(self.screen)
-
     def draw_game(self):
         """ Ask all the objects in the game to draw themselves. """
         for k in range(len(self.tetrisgrid.row)):
             for k2 in range(len(self.tetrisgrid.row[k])):
-                # self.scoreboard.draw()
                 self.tetrisgrid.row[k][k2].draw(self.screen)
         if self.tetromino != None:
             self.tetromino.draw(self.screen)
@@ -118,15 +105,8 @@ class Game:
             self.start.draw(self.highest_score[-1], self.highest_score[-2], self.highest_score[-3])
 
 
-
-        # Use something like the following, but for the objects in YOUR game:
-        #     self.fighter.draw()
-        #     self.missiles.draw()
-        #     self.enemies.draw()
-
     def run_one_cycle(self):
         """ All objects that do something at each cycle: ask them to do it. """
-        # Use something like the following, but for the objects in YOUR game:
 
         if self.gamestate == 0:
             self.high_score += [self.score]
@@ -204,7 +184,6 @@ class Game:
                     self.tetromino = None
                     self.framecount = 0
                     self.movegrid = True
-                    # raise Exception("GAME OVER")
 
                 if self.tetrominomoving:
                     if self.tetromino != None:
@@ -225,7 +204,7 @@ class Game:
                 self.score += self.tetrisgrid.update_score()
                 self.scoreboard.score = self.score
 
-        # Starting Breakout 22222222222222222222222222222222222222222222222222
+        # Starting Breakout
         if self.gamestate == 2:     # starts the breakout game
             if self.movegrid:       # Moves the tetris grid for breakout
                 if self.framecount % 4 == 0:
@@ -255,15 +234,6 @@ class Game:
                     if self.paddle.give_top().collidepoint(self.powerup.x, self.powerup.y) or self.paddle.give_bottom().collidepoint(self.powerup.x, self.powerup.y):
                         self.powerup.activate(self)
                         self.powerup = None
-                    
-                    # if self.paddle.give_bottom().collidepoint(self.powerup.x, self.powerup.y):
-                    #     self.powerup.activate(self)
-                    #     self.powerup = None
-
-
-
-
-
 
                 pressed_keys = pygame.key.get_pressed()
                 if pressed_keys[pygame.K_UP] or pressed_keys[pygame.K_w]:       # moves paddle
@@ -328,8 +298,6 @@ class Game:
 
 
                 self.willose = False
-        #     self.enemies.move()
-        #     self.missiles.handle_explosions(self.enemies)
 
     def spawntetromino(self):
         letterlist = ["I", "J", "L", "O", "T", "S", "Z"]
@@ -341,8 +309,6 @@ class Game:
     
     def debugspawnbreakout(self):
         self.ball = Ball.Ball(self.screen, 16, 50, self.ballroundspeed, 0.5, self)
-        # self.paddle_top = Ball.Paddle(self.screen, 192, 72, 32, 4)
-        # self.paddle_bottom = Ball.Paddle(self.screen, 192, 96, 32, 4)
         self.paddle = Ball.Paddle(self.screen, 92)
 
     def change_paddle_speed(self, newspeed):    # change paddle speed for powerup

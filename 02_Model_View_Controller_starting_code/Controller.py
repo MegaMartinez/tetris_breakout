@@ -45,15 +45,6 @@ class Controller:
         if self.key_was_pressed_on_this_cycle(pygame.K_w, events) or self.key_was_pressed_on_this_cycle(pygame.K_UP, events):
             self.game.tetrominorotating = True
 
-        # Use code like the following, but for YOUR Game object.
-        #     if pressed_keys[pygame.K_LEFT]:
-        #         self.game.fighter.move_left()
-        #     if pressed_keys[pygame.K_RIGHT]:
-        #         self.game.fighter.move_right()
-        #
-        #     if self.key_was_pressed_on_this_cycle(pygame.K_SPACE, events):
-        #         self.game.fighter.fire()
-
     @staticmethod
     def exit_if_time_to_quit(events):
         for event in events:
