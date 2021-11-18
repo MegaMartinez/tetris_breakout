@@ -30,8 +30,7 @@ class Controller:
         
         if pressed_keys[pygame.K_2]:
             if self.runonce == 0:
-                self.game.debugspawnbreakout()
-                self.game.gamestate = 2
+                self.game.debugwinbreakout()
             self.runonce = 1
 
         if pressed_keys[pygame.K_RSHIFT]:

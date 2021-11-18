@@ -86,7 +86,9 @@ class Ball:
         self.score_incr = self.score_incr // 2
 
     def update_score(self):
-        return self.score
+        x = self.score
+        self.score = 0
+        return x
 
 
 class Paddle:

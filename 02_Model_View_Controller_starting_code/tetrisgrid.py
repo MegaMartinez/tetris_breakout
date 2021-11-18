@@ -58,7 +58,7 @@ class tetrisgrid:
                 if self.row[ky][kx].state == 2:
                     countfilled += 1
             if countfilled == 10: #Add score here
-                self.score += 100
+                self.score += 200
                 for kx in range(10):
                     self.row[ky][kx].empty_basic()
         for ky in range(19, -1, -1):
@@ -93,7 +93,9 @@ class tetrisgrid:
             self.row[19][kx].stophere = True
 
     def update_score(self):
-        return self.score
+        x = self.score
+        self.score = 0
+        return x
     
     def updatehitbox(self):
         for ky in range(20):
@@ -109,6 +111,11 @@ class tetrisgrid:
         for ky in range(20):
             for kx in range(10):
                 self.row[ky][kx].posx += 1
+    
+    def moveeverythingback(self):
+        for ky in range(20):
+            for kx in range(10):
+                self.row[ky][kx].posx -= 1
     
     def blowup(self, ball):
         tilex = (int(ball.x) // 8) - 12
