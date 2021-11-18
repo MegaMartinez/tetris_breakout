@@ -157,6 +157,9 @@ class Game:
                             if self.tetromino.positions[k] in self.tetrisgrid.get_stopspots():
                                 for k2 in range(len(self.tetromino.positions)):
                                     self.tetrisgrid.fill((self.tetromino.positions[k2][0] // 8) - 8, (self.tetromino.positions[k2][1] // 8) - 3, self.tetromino.color)
+                                ran = random.randrange(1, 3)
+                                drop = pygame.mixer.Sound(file("soundeffects/drop_" + str(ran) + ".wav"))
+                                pygame.mixer.Sound.play(drop)
                                 self.tetromino = None
                                 self.framecount = -1
                                 self.stoptetromino = False

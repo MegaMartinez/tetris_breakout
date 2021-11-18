@@ -40,6 +40,7 @@ class Ball:
     #     return self.y
 
     def bonk_top(self):     # reflecting ball off the top of the paddle
+        playsound()
         ran = random.uniform(-0.2, 0.2)
         self.speed_x = -self.speed_x
         if abs(self.speed_y) < .5:
@@ -52,6 +53,7 @@ class Ball:
             self.speed_y = abs(self.speed_y) + ran
 
     def bonk_bottom(self):      # reflecting ball of bottom of the paddle
+        playsound()
         ran = random.uniform(-0.2, 0.2)
         self.speed_x = -self.speed_x
         if abs(self.speed_y) < .5:
@@ -64,10 +66,12 @@ class Ball:
             self.speed_y = -abs(self.speed_y) + ran
 
     def bonk_block_side(self):      # reflecting off the side of a block
+        playsound()
         self.speed_x = -self.speed_x
         self.score += self.score_incr
 
     def bonk_block_top(self):       # reflecting off the top or bottom of a block
+        playsound()
         self.speed_y = -self.speed_y
         self.score += self.score_incr
 
@@ -124,3 +128,18 @@ class Paddle:
         self.image2 = pygame.image.load(file("test_paddle2.png"))
         self.top_hitbox = pygame.Rect(self.x, self.y, self.image.get_width(), self.image.get_height())
         self.bottom_hitbox = pygame.Rect(self.x, self.y - self.image.get_height(), self.image.get_width(), self.image.get_height())
+
+
+
+def playsound():
+    ran = random.randrange(1, 4)
+    beep = None
+    if ran == 1:
+        beep = pygame.mixer.Sound(file("soundeffects/beep_square_50_1.wav"))
+    elif ran == 2:
+        beep = pygame.mixer.Sound(file("soundeffects/beep_square_50_2.wav"))
+    elif ran == 3:
+        beep = pygame.mixer.Sound(file("soundeffects/beep_square_50_3.wav"))
+    else:
+        raise Exception("the sound effects are not working")
+    pygame.mixer.Sound.play(beep)

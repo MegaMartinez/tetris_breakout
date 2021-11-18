@@ -3,6 +3,7 @@
 import pygame
 from tile import tile
 from Scoreboard import Scoreboard
+from filesystem import file
 
 class tetrisgrid:
     def __init__(self):
@@ -58,6 +59,8 @@ class tetrisgrid:
                 if self.row[ky][kx].state == 2:
                     countfilled += 1
             if countfilled == 10: #Add score here
+                breaksound = pygame.mixer.Sound(file("soundeffects/line_break.wav"))
+                pygame.mixer.Sound.play(breaksound)
                 self.score += 200
                 for kx in range(10):
                     self.row[ky][kx].empty_basic()
